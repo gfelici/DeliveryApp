@@ -1,0 +1,84 @@
+{
+  "restaurants" : [ {
+    "menus" : [ {
+      "dishes" : [ {
+        "name" : "Tortelli verdi",
+        "price" : 10.5
+      }, {
+        "name" : "Gnocchi al ragu'",
+        "price" : 9.0
+      }, {
+        "name" : "Spaghetti alla carbonara",
+        "price" : 10.0
+      } ],
+      "name" : "primi"
+    }, {
+      "dishes" : [ {
+        "name" : "Scaloppine al limone",
+        "price" : 11.0
+      }, {
+        "name" : "Frittata",
+        "price" : 8.0
+      }, {
+        "name" : "Costine di agnello in salsa agrodolce",
+        "price" : 13.5
+      } ],
+      "name" : "secondi"
+    }, {
+      "dishes" : [ {
+        "name" : "Millefoglie",
+        "price" : 6.0
+      }, {
+        "name" : "Panna cotta al caramello",
+        "price" : 5.0
+      } ],
+      "name" : "dolci"
+    } ],
+    "name" : "Il cantinone"
+  }, {
+    "menus" : [ {
+      "dishes" : [ {
+        "name" : "Tortelloni di zucca",
+        "price" : 10.5
+      }, {
+        "name" : "Gnocchi al pesto",
+        "price" : 9.0
+      }, {
+        "name" : "Pasta al pesto",
+        "price" : 8.0
+      } ],
+      "name" : "primi"
+    }, {
+      "dishes" : [ {
+        "name" : "Scaloppine all'aceto",
+        "price" : 11.0
+      }, {
+        "name" : "Funghi fritti",
+        "price" : 13.0
+      }, {
+        "name" : "Medaglione di manzo scottato",
+        "price" : 16.0
+      } ],
+      "name" : "secondi"
+    }, {
+      "dishes" : [ {
+        "name" : "Patatine fritte",
+        "price" : 3.0
+      }, {
+        "name" : "Verdure grigliate",
+        "price" : 6.0
+      } ],
+      "name" : "contorni"
+    }, {
+      "dishes" : [ {
+        "name" : "Millefoglie",
+        "price" : 6.0
+      }, {
+        "name" : "Panna cotta al caramello",
+        "price" : 5.0
+      } ],
+      "name" : "dolci"
+    } ],
+    "name" : "Agriturismo fiore"
+  } ]
+}

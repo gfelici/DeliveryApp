@@ -1,0 +1,92 @@
+package com.delivery.deliveryapp;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+
+import com.delivery.deliveryapp.models.Dish;
+import com.delivery.deliveryapp.models.Menu;
+import com.delivery.deliveryapp.utils.Utils;
+
+public class MenuFragment extends Fragment {
+
+    private static final String TAG = "INFO2";
+    private Menu menu;
+
+    public MenuFragment(Menu menu)
+    {
+        super(R.layout.menufragment);
+        this.menu = menu;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        final View rootView = inflater.inflate(R.layout.menufragment, container, false);
+        LinearLayout menuLayout = (LinearLayout) rootView.findViewById(R.id.menu_layout);
+        for (final Dish d : this.menu.getDishses())
+        {
+            LinearLayout l = new LinearLayout(this.getContext()); //TODO cambiare layout per nomi lunghi
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            l.setLayoutParams(params);
+
+            ImageView image = new ImageView(this.getContext());
+            params = new LinearLayout.LayoutParams(Utils.dpToPx(100,this.getContext()), Utils.dpToPx(100,this.getContext()));
+            image.setLayoutParams(params);
+            image.setForegroundGravity(Gravity.LEFT);
+            image.setImageResource(R.drawable.sushi);
+
+            TextView dishText = new TextView(this.getContext());
+            params = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+            params.setMarginStart(Utils.dpToPx(10,rootView.getContext()));
+            dishText.setLayoutParams(params);
+            dishText.setGravity(Gravity.CENTER_VERTICAL);
+            dishText.setText(d.getName());
+            dishText.setTextSize(20);
+
+            TextView priceText = new TextView(this.getContext());
+            params = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+            params.setMarginStart(Utils.dpToPx(10,rootView.getContext()));
+            priceText.setLayoutParams(params);
+            priceText.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
+            priceText.setText(d.getPrice() + "€");
+            priceText.setTextSize(20);
+
+            l.addView(image);
+            l.addView(dishText);
+            l.addView(priceText);
+            l.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.v(TAG, "Item clicked: " + d.getName());
+                    Intent myIntent = new Intent(getActivity(), DishActivity.class);
+                    myIntent.putExtra("dish", d);
+                    startActivity(myIntent);
+                }
+            });
+            menuLayout.addView(l);
+        }
+        return rootView;
+    }
+
+}
