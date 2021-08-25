@@ -18,5 +18,6 @@
         </activity>
         <activity android:name=".RestaurantActivity"/>
         <activity android:name=".DishActivity"/>
+        <activity android:name=".OrderActivity"/>
     </application>
 </manifest>

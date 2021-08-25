@@ -16,11 +16,20 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="550dp">
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </androidx.viewpager.widget.ViewPager>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="160dp"
+        android:text="Il tuo ordine"
+        android:textSize="40dp"
+        android:onClick="onClick"/>
 
 </LinearLayout>

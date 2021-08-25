@@ -8,13 +8,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.delivery.deliveryapp.models.Dish;
+import com.delivery.deliveryapp.models.ObjectQuantity;
+import com.delivery.deliveryapp.models.Order;
 
 public class DishActivity extends Activity {
 
     private final static String TAG = "INFO2";
     private Dish dish;
+    private Order order; //ref to general order. Dishes are added here.
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,12 +30,52 @@ public class DishActivity extends Activity {
         this.dish = (Dish) intent.getExtras().getSerializable("dish");
         TextView dishTextView = findViewById(R.id.dishTextView);
         dishTextView.setText(dish.getName());
+
+        this.order = (Order) intent.getExtras().getSerializable("order");
     }
 
     @Override
     protected void onStart()
     {
         super.onStart();
+        TextView counter = findViewById(R.id.counter);
+        Log.v(TAG, "Quantity: " + order.getDishQuantity(this.dish));
+        counter.setText(""+order.getDishQuantity(this.dish));
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        finish();
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        finish();
+    }
+
+    @Override
+    public void finish()
+    {
+        Intent intent = getIntent();
+        intent.putExtra("order", this.order);
+        setResult(Activity.RESULT_OK, intent);
+        super.finish();
+    }
+
+    private void updateOrder()
+    {
+        TextView counter = findViewById(R.id.counter);
+        String numText = counter.getText().toString();
+        int num = Integer.parseInt(numText);
+        if (num > 0) {
+            order.setDishQuantity(this.dish, num);
+            //order.addDishes(this.dish, num);
+            //Toast.makeText(this, "Aggiunto agli ordini", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void onClick(View v)
@@ -56,5 +100,6 @@ public class DishActivity extends Activity {
                 counter.setText(val + "");
             }
         }
+        updateOrder();
     }
 }

@@ -6,16 +6,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.delivery.deliveryapp.models.Order;
 import com.delivery.deliveryapp.models.Restaurant;
 
 public class MenuPagerAdapter extends FragmentPagerAdapter {
 
     private Restaurant restaurant;
+    private Order order;
 
-    public MenuPagerAdapter(FragmentManager fm, Restaurant restaurant)
+    public MenuPagerAdapter(FragmentManager fm, Restaurant restaurant, Order order)
     {
         super(fm);
         this.restaurant = restaurant;
+        this.order = order;
     }
 
     @Override
@@ -27,7 +30,7 @@ public class MenuPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position)
     {
-        return new MenuFragment(this.restaurant.getMenus().get(position));
+        return new MenuFragment(this.restaurant.getMenus().get(position), order);
     }
 
     @Override

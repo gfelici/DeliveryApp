@@ -4,13 +4,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.delivery.deliveryapp.models.Dish;
 import com.delivery.deliveryapp.models.Menu;
+import com.delivery.deliveryapp.models.ObjectQuantity;
+import com.delivery.deliveryapp.models.Order;
 import com.delivery.deliveryapp.models.Restaurant;
 import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
@@ -22,6 +26,7 @@ public class RestaurantActivity extends AppCompatActivity {
     private static final String TAG = "INFO";
 
     private Restaurant restaurant;
+    private Order order; //ordine per questo ristorante. E' l'equivalente di un carrello
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,9 +41,12 @@ public class RestaurantActivity extends AppCompatActivity {
         textView.setText(restaurant.getName());
         this.restaurant = restaurant;
 
+        //creo una nuova ordinazione per questo ristorante
+        this.order = new Order(restaurant);
+
         tabLayout = findViewById(R.id.tab_layout);
         pager = findViewById(R.id.pager);
-        pager.setAdapter(new MenuPagerAdapter(this.getSupportFragmentManager(), this.restaurant));
+        pager.setAdapter(new MenuPagerAdapter(this.getSupportFragmentManager(), this.restaurant, this.order));
         tabLayout.setupWithViewPager(pager);
     }
 
@@ -54,5 +62,27 @@ public class RestaurantActivity extends AppCompatActivity {
         tab.setText(tabName);
         tabLayout.addTab(tab);
     }
-    
+
+    public void onClick(View v)
+    {
+        Log.v(TAG, "Cliccato!!");
+        Intent orderIntent = new Intent(RestaurantActivity.this, OrderActivity.class);
+        orderIntent.putExtra("order", this.order);
+        startActivity(orderIntent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK)
+        {
+            this.order = (Order) data.getExtras().getSerializable("order");
+        }
+
+        for (ObjectQuantity<Dish> dq : order.getDishes())
+            Log.v("DISH", dq.getObject().getName());
+
+    }
 }

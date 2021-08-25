@@ -20,17 +20,21 @@ import androidx.fragment.app.Fragment;
 
 import com.delivery.deliveryapp.models.Dish;
 import com.delivery.deliveryapp.models.Menu;
+import com.delivery.deliveryapp.models.ObjectQuantity;
+import com.delivery.deliveryapp.models.Order;
 import com.delivery.deliveryapp.utils.Utils;
 
 public class MenuFragment extends Fragment {
 
     private static final String TAG = "INFO2";
     private Menu menu;
+    private Order order;
 
-    public MenuFragment(Menu menu)
+    public MenuFragment(Menu menu, Order order)
     {
         super(R.layout.menufragment);
         this.menu = menu;
+        this.order = order;
     }
 
     @Override
@@ -81,12 +85,32 @@ public class MenuFragment extends Fragment {
                     Log.v(TAG, "Item clicked: " + d.getName());
                     Intent myIntent = new Intent(getActivity(), DishActivity.class);
                     myIntent.putExtra("dish", d);
-                    startActivity(myIntent);
+                    myIntent.putExtra("order", order);
+                    //startActivity(myIntent);
+                    startActivityForResult(myIntent,1);
+
                 }
             });
+
             menuLayout.addView(l);
         }
+
         return rootView;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK && requestCode == 1)
+        {
+            this.order = (Order) data.getExtras().getSerializable("order");
+        }
+
+        for (ObjectQuantity<Dish> dq : order.getDishes())
+            Log.v("DISH", dq.getObject().getName());
+
     }
 
 }
