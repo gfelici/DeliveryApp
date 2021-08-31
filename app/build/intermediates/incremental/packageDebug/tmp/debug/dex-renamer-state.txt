@@ -1,4 +1,4 @@
-#Tue Aug 31 15:01:17 CEST 2021
+#Tue Aug 31 15:55:40 CEST 2021
 base.0=C\:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex

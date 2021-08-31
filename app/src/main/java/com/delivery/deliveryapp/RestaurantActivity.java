@@ -24,6 +24,7 @@ public class RestaurantActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager pager;
     private static final String TAG = "INFO";
+    private static final String ORDER = "ORDER";
 
     private Restaurant restaurant;
     private Order order; //ordine per questo ristorante. E' l'equivalente di un carrello
@@ -82,6 +83,7 @@ public class RestaurantActivity extends AppCompatActivity {
             Log.v(TAG, "Returned value: "+count);
             this.order.setDishQuantity(dish, count);
             Log.v(TAG, "Dish quantity: "+this.order.getDishQuantity(dish));
+            Log.v(ORDER, order.toString());
         }
     }
 }

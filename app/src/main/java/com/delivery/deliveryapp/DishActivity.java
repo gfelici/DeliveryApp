@@ -72,6 +72,7 @@ public class DishActivity extends Activity {
         int count = Integer.parseInt(counter.getText().toString());
         intent.putExtra("count", count);
         setResult(Activity.RESULT_OK, intent);
+        Toast.makeText(this, "Aggiunto agli ordini", Toast.LENGTH_LONG).show();
         super.finish();
     }
 

@@ -38,7 +38,10 @@ public class Order implements Serializable {
         for (ObjectQuantity<Dish> dq : dishes)
             if (dq.getObject().getName().equals(dish.getName()))
             {
-                dq.setQuantity(quantity);
+                if (quantity <= 0)
+                    dishes.remove(dq);
+                else
+                    dq.setQuantity(quantity);
                 return;
             }
         //dish is not in the order, must be added
@@ -54,5 +57,15 @@ public class Order implements Serializable {
                 return dq.getQuantity();
         }
         return 0;
+    }
+
+    public String toString()
+    {
+        String orderStr = "";
+        for (ObjectQuantity<Dish> dq : dishes) {
+            Dish dish = (Dish) dq.getObject();
+            orderStr = orderStr + dish.getName() + ":"+ dq.getQuantity()+" ";
+        }
+        return orderStr;
     }
 }
