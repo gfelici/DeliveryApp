@@ -1,5 +1,7 @@
 package com.delivery.deliveryapp.models;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,6 +9,7 @@ public class Order implements Serializable {
 
     private Restaurant restaurant; //ref to restaurant where the order was taken
     private ArrayList<ObjectQuantity<Dish>> dishes;
+    private static final String TAG = "INFO";
 
     public Order(Restaurant restaurant)
     {
@@ -33,7 +36,7 @@ public class Order implements Serializable {
     public void setDishQuantity(Dish dish, int quantity)
     {
         for (ObjectQuantity<Dish> dq : dishes)
-            if (dq.getObject().equals(dish))
+            if (dq.getObject().getName().equals(dish.getName()))
             {
                 dq.setQuantity(quantity);
                 return;
@@ -44,9 +47,12 @@ public class Order implements Serializable {
 
     public int getDishQuantity(Dish dish)
     {
-        for (ObjectQuantity<Dish> dq : dishes)
-            if (dq.getObject().equals(dish))
+        for (ObjectQuantity<Dish> dq : dishes) {
+            Log.v(TAG, "Dish: " + dq.getObject().getName());
+            Log.v(TAG, "Dish to found: " + dish.getName());
+            if (dq.getObject().getName().equals(dish.getName()))//TODO BUG QUI (non torna l'equals)
                 return dq.getQuantity();
+        }
         return 0;
     }
 }

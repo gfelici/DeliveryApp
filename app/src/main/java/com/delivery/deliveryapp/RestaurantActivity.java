@@ -76,13 +76,12 @@ public class RestaurantActivity extends AppCompatActivity {
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == Activity.RESULT_OK)
-        {
-            this.order = (Order) data.getExtras().getSerializable("order");
+        if (resultCode == Activity.RESULT_OK){ //&& requestCode == 1) {
+            int count = data.getExtras().getInt("count");
+            Dish dish = (Dish) data.getExtras().getSerializable("dish");
+            Log.v(TAG, "Returned value: "+count);
+            this.order.setDishQuantity(dish, count);
+            Log.v(TAG, "Dish quantity: "+this.order.getDishQuantity(dish));
         }
-
-        for (ObjectQuantity<Dish> dq : order.getDishes())
-            Log.v("DISH", dq.getObject().getName());
-
     }
 }

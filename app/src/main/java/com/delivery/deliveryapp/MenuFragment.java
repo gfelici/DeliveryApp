@@ -85,10 +85,10 @@ public class MenuFragment extends Fragment {
                     Log.v(TAG, "Item clicked: " + d.getName());
                     Intent myIntent = new Intent(getActivity(), DishActivity.class);
                     myIntent.putExtra("dish", d);
-                    myIntent.putExtra("order", order);
+                    Log.v(TAG, "Dish quantity in fragment:" + order.getDishQuantity(d));
+                    myIntent.putExtra("count", order.getDishQuantity(d));
                     //startActivity(myIntent);
                     startActivityForResult(myIntent,1);
-
                 }
             });
 
@@ -98,6 +98,7 @@ public class MenuFragment extends Fragment {
         return rootView;
     }
 
+    /*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -105,12 +106,13 @@ public class MenuFragment extends Fragment {
 
         if (resultCode == Activity.RESULT_OK && requestCode == 1)
         {
-            this.order = (Order) data.getExtras().getSerializable("order");
+            int count = data.getExtras().getInt("count");
+            Dish dish = (Dish) data.getExtras().getSerializable("dish");
+            this.order.setDishQuantity(dish, count);
         }
 
-        for (ObjectQuantity<Dish> dq : order.getDishes())
-            Log.v("DISH", dq.getObject().getName());
-
+        //for (ObjectQuantity<Dish> dq : order.getDishes())
+        //    Log.v("DISH", dq.getObject().getName());
     }
-
+    */
 }

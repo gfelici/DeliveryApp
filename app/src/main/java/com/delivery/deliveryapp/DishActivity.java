@@ -16,9 +16,10 @@ import com.delivery.deliveryapp.models.Order;
 
 public class DishActivity extends Activity {
 
-    private final static String TAG = "INFO2";
+    private final static String TAG = "INFO";
     private Dish dish;
-    private Order order; //ref to general order. Dishes are added here.
+    private int initialCount;
+    //private Order order; //ref to general order. Dishes are added here.
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,10 +29,15 @@ public class DishActivity extends Activity {
 
         Intent intent = getIntent();
         this.dish = (Dish) intent.getExtras().getSerializable("dish");
+        this.initialCount = intent.getExtras().getInt("count");
         TextView dishTextView = findViewById(R.id.dishTextView);
         dishTextView.setText(dish.getName());
 
-        this.order = (Order) intent.getExtras().getSerializable("order");
+        TextView counter = findViewById(R.id.counter);
+        Log.v(TAG, "Quantity: " + initialCount);
+        counter.setText(""+intent.getExtras().getInt("count"));
+
+        //this.order = (Order) intent.getExtras().getSerializable("order");
     }
 
     @Override
@@ -39,29 +45,32 @@ public class DishActivity extends Activity {
     {
         super.onStart();
         TextView counter = findViewById(R.id.counter);
-        Log.v(TAG, "Quantity: " + order.getDishQuantity(this.dish));
-        counter.setText(""+order.getDishQuantity(this.dish));
+        Log.v(TAG, "Quantity: " + initialCount);
+        counter.setText(""+initialCount);
     }
 
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
-        finish();
+        //finish();
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
-        finish();
+        //finish();
     }
 
     @Override
     public void finish()
     {
         Intent intent = getIntent();
-        intent.putExtra("order", this.order);
+        intent.putExtra("dish", this.dish);
+        TextView counter = findViewById(R.id.counter);
+        int count = Integer.parseInt(counter.getText().toString());
+        intent.putExtra("count", count);
         setResult(Activity.RESULT_OK, intent);
         super.finish();
     }
@@ -72,7 +81,7 @@ public class DishActivity extends Activity {
         String numText = counter.getText().toString();
         int num = Integer.parseInt(numText);
         if (num > 0) {
-            order.setDishQuantity(this.dish, num);
+            //order.setDishQuantity(this.dish, num);
             //order.addDishes(this.dish, num);
             //Toast.makeText(this, "Aggiunto agli ordini", Toast.LENGTH_LONG).show();
         }
@@ -100,6 +109,6 @@ public class DishActivity extends Activity {
                 counter.setText(val + "");
             }
         }
-        updateOrder();
+        //updateOrder();
     }
 }
