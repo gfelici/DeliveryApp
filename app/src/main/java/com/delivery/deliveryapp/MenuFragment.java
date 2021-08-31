@@ -50,11 +50,11 @@ public class MenuFragment extends Fragment {
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             l.setLayoutParams(params);
 
-            ImageView image = new ImageView(this.getContext());
-            params = new LinearLayout.LayoutParams(Utils.dpToPx(100,this.getContext()), Utils.dpToPx(100,this.getContext()));
-            image.setLayoutParams(params);
-            image.setForegroundGravity(Gravity.LEFT);
-            image.setImageResource(R.drawable.sushi);
+            //ImageView image = new ImageView(this.getContext());
+            //params = new LinearLayout.LayoutParams(Utils.dpToPx(100,this.getContext()), Utils.dpToPx(100,this.getContext()));
+            //image.setLayoutParams(params);
+            //image.setForegroundGravity(Gravity.LEFT);
+            //image.setImageResource(R.drawable.sushi);
 
             TextView dishText = new TextView(this.getContext());
             params = new LinearLayout.LayoutParams(
@@ -62,21 +62,21 @@ public class MenuFragment extends Fragment {
                     ViewGroup.LayoutParams.MATCH_PARENT);
             params.setMarginStart(Utils.dpToPx(10,rootView.getContext()));
             dishText.setLayoutParams(params);
-            dishText.setGravity(Gravity.CENTER_VERTICAL);
+            dishText.setGravity(Gravity.LEFT);
             dishText.setText(d.getName());
             dishText.setTextSize(20);
 
             TextView priceText = new TextView(this.getContext());
             params = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT);
+                    Utils.dpToPx(50, this.getContext()));
             params.setMarginStart(Utils.dpToPx(10,rootView.getContext()));
             priceText.setLayoutParams(params);
             priceText.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
             priceText.setText(d.getPrice() + "€");
             priceText.setTextSize(20);
 
-            l.addView(image);
+            //l.addView(image);
             l.addView(dishText);
             l.addView(priceText);
             l.setOnClickListener(new View.OnClickListener() {

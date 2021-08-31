@@ -84,23 +84,23 @@ public class MainActivity extends Activity
         l.setLayoutParams(params);
         l.setOrientation(LinearLayout.HORIZONTAL);
 
-        ImageView image = new ImageView(this);
-        params = new LinearLayout.LayoutParams(Utils.dpToPx(100,this), Utils.dpToPx(100,this));
-        image.setLayoutParams(params);
-        image.setForegroundGravity(Gravity.LEFT);
-        image.setImageResource(R.drawable.sushi);
+        //ImageView image = new ImageView(this);
+        //params = new LinearLayout.LayoutParams(Utils.dpToPx(100,this), Utils.dpToPx(100,this));
+        //image.setLayoutParams(params);
+        //image.setForegroundGravity(Gravity.LEFT);
+        //image.setImageResource(R.drawable.sushi);
 
         TextView textView = new TextView(this);
         params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
+                Utils.dpToPx(50, this));
         params.setMarginStart(Utils.dpToPx(10,this));
         textView.setLayoutParams(params);
-        textView.setGravity(Gravity.CENTER_VERTICAL);
+        textView.setGravity(Gravity.LEFT);
         textView.setText(restaurant.getName());
-        textView.setTextSize(20);
+        textView.setTextSize(30);
 
-        l.addView(image);
+        //l.addView(image);
         l.addView(textView);
         l.setOnClickListener(new View.OnClickListener() {
             @Override
