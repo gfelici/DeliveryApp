@@ -1,63 +1,98 @@
 package com.delivery.deliveryapp;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
 import com.delivery.deliveryapp.Firebase.Manager;
-import com.delivery.deliveryapp.models.Dish;
-import com.delivery.deliveryapp.models.Menu;
 import com.delivery.deliveryapp.models.Restaurant;
 import com.delivery.deliveryapp.utils.Utils;
 
-import java.util.ArrayList;
-
 public class MainActivity extends Activity
 {
+    private double _lat, _long;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    private int GPS_REQ_CODE = 10;
+    final String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+    final String TAG = "PERMS";
+    final String INFO = "CORDS";
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
-        for (int i=0; i<15; i++)
-        {
-            ArrayList<Menu> menus = new ArrayList<Menu>();
+        //gps coords
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                Log.v(INFO, "lat: " + location.getLatitude() + " long: " + location.getLongitude());
+                _lat = location.getLatitude();
+                _long = location.getLongitude();
+            }
 
-            Menu primi = new Menu("Primi");
-            primi.add(new Dish("Tortelli", "Desc", 10.0f ));
-            primi.add(new Dish("Pasta al pesto", "Desc", 5.0f ));
-            primi.add(new Dish("Spaghetti alla carbonara", "Desc", 9.5f ));
-            primi.add(new Dish());
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
 
-            Menu secondi = new Menu("Secondi");
-            secondi.add(new Dish("Fiorentina", "Desc", 30.0f));
-            secondi.add(new Dish("Sformato di spinaci", "Desc", 7.5f));
-            secondi.add(new Dish("Scaloppine al limone", "Desc", 9.0f));
+            }
 
-            menus.add(primi);
-            menus.add(secondi);
+            @Override
+            public void onProviderEnabled(String s) {
 
-            final Restaurant restaurant = new Restaurant("I 7 mari", menus);
+            }
 
-            addRestaurant(restaurant);
+            @Override
+            public void onProviderDisabled(String s) {
+
+            }
+        };
+
+        if (checkCallingOrSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && checkCallingOrSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            //TODO avviso l'utente del perchè ho bisogno del permesso
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                //lo chiediamo
+                requestPermissions(perms, GPS_REQ_CODE);
+            }
         }
-        */
+        else
+            locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
+        //Log.d("INFO2", "Inizio");
+        //while (!manager.isEnded());
+        //try {Thread.sleep(5*1000);} catch (InterruptedException iex) {}
 
         Manager manager = new Manager(this);
         manager.execute();
-        Log.d("INFO2", "Inizio");
-        //while (!manager.isEnded());
-        //try {Thread.sleep(5*1000);} catch (InterruptedException iex) {}
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+    {
+        if (requestCode == GPS_REQ_CODE && grantResults.length>0)
+        {
+            for (int i=0; i<permissions.length; i++)
+                for (int j=0; j<perms.length; j++)
+                    if (permissions[i].equals(perms[j]))
+                        if (grantResults[i] == PackageManager.PERMISSION_GRANTED)
+                            Log.d(TAG, "Permission " + permissions[i] + " granted");
+                        else
+                            Log.d(TAG,  "Permission " + permissions[i] + " not granted");
+        }
     }
 
     @Override
@@ -66,7 +101,7 @@ public class MainActivity extends Activity
         super.onStart();
     }
 
-    private void newActivity(final Restaurant restaurant)
+    private void newRestaurantActivity(final Restaurant restaurant)
     {
             Intent myIntent = new Intent(MainActivity.this, RestaurantActivity.class);
             myIntent.putExtra("restaurant", restaurant);
@@ -105,7 +140,7 @@ public class MainActivity extends Activity
         l.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                newActivity(restaurant);
+                newRestaurantActivity(restaurant);
             }
         });
 

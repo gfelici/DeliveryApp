@@ -22,7 +22,7 @@ import com.google.firebase.database.Query;
 
 public class Manager extends AsyncTask<Void, Void, Void> {
 
-    private final String TAG = "INFO2";
+    private final String TAG = "DBINFO";
     private FirebaseDatabase db;
 
     private MainActivity main;
@@ -49,6 +49,9 @@ public class Manager extends AsyncTask<Void, Void, Void> {
                 DataSnapshot data = task.getResult();
                 for (long i=0; i<data.getChildrenCount(); i++)
                 {
+                    //filtro i ristoranti in base alla posizione
+                    //Log.v(TAG, String.valueOf(task.getResult().child(i+"").child("name").getValue()));
+
                     Restaurant restaurant = new Restaurant(String.valueOf(data.child(i+"").child("name").getValue()));
                     DataSnapshot menuData = data.child(i+"").child("menus");
                     for (long j=0; j<menuData.getChildrenCount(); j++)
@@ -80,7 +83,7 @@ public class Manager extends AsyncTask<Void, Void, Void> {
     {
         this.getData();
         //this.end = true;
-        while (!Manager.end);
+        while (!Manager.end); //TODO mandare fuori un segnale per ogni ristorante aggiunto di aggiornare l'interfaccia
         Log.d(TAG, "Fine");
         return null;
     }
