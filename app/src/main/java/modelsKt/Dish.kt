@@ -1,0 +1,4 @@
+package modelsKt
+
+class Dish {
+}

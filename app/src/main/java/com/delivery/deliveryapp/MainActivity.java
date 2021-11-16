@@ -19,11 +19,12 @@ import android.widget.TextView;
 
 import com.delivery.deliveryapp.Firebase.Manager;
 import com.delivery.deliveryapp.models.Restaurant;
+import com.delivery.deliveryapp.utils.GpsUtils;
 import com.delivery.deliveryapp.utils.Utils;
 
 public class MainActivity extends Activity
 {
-    private double _lat, _long;
+    private double _lat, _long;//TODO muovere in Manager
     private LocationManager locationManager;
     private LocationListener locationListener;
     private int GPS_REQ_CODE = 10;
@@ -36,14 +37,21 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        _lat = _long = 0; //init location, 0 means not already got cords
+        final Manager manager = new Manager(this, 0,0); //get db instance
+
         //gps coords
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 Log.v(INFO, "lat: " + location.getLatitude() + " long: " + location.getLongitude());
                 _lat = location.getLatitude();
                 _long = location.getLongitude();
+
+                manager.setLat(_lat);
+                manager.setLong(_long);
             }
 
             @Override
@@ -70,13 +78,20 @@ public class MainActivity extends Activity
                 requestPermissions(perms, GPS_REQ_CODE);
             }
         }
-        else
+        else {
             locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
+            try {
+                _lat = locationManager.getLastKnownLocation(LOCATION_SERVICE).getLatitude();
+                _long = locationManager.getLastKnownLocation(LOCATION_SERVICE).getLongitude();
+            }
+            catch (NullPointerException ex)
+            {}
+        }
+
         //Log.d("INFO2", "Inizio");
         //while (!manager.isEnded());
         //try {Thread.sleep(5*1000);} catch (InterruptedException iex) {}
 
-        Manager manager = new Manager(this);
         manager.execute();
     }
 
@@ -88,8 +103,10 @@ public class MainActivity extends Activity
             for (int i=0; i<permissions.length; i++)
                 for (int j=0; j<perms.length; j++)
                     if (permissions[i].equals(perms[j]))
-                        if (grantResults[i] == PackageManager.PERMISSION_GRANTED)
+                        if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                            //flag permesso on, lastknownlocation non deve essere usato
                             Log.d(TAG, "Permission " + permissions[i] + " granted");
+                        }
                         else
                             Log.d(TAG,  "Permission " + permissions[i] + " not granted");
         }

@@ -1998,6 +1998,7 @@ id notification_main_column
 id notification_main_column_container
 id off
 id on
+id orderLayout
 id outline
 id outward
 id packed
@@ -2105,7 +2106,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
-id textView
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -2122,6 +2122,7 @@ id title_template
 id toggle
 id top
 id topPanel
+id totalPrice
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -2143,6 +2144,7 @@ id withText
 id withinBounds
 id wrap
 id wrap_content
+id yourOrder
 id zero_corner_chip
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur

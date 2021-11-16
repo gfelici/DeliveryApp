@@ -21,7 +21,6 @@ public class Order implements Serializable {
     {
         return this.dishes;
     }
-
     public void setDishes(ArrayList<ObjectQuantity<Dish>> dishes)
     {
         this.dishes = dishes;
@@ -45,7 +44,8 @@ public class Order implements Serializable {
                 return;
             }
         //dish is not in the order, must be added
-        dishes.add(new ObjectQuantity<Dish>(dish, quantity));
+        if (quantity > 0)
+            dishes.add(new ObjectQuantity<Dish>(dish, quantity));
     }
 
     public int getDishQuantity(Dish dish)
@@ -57,6 +57,17 @@ public class Order implements Serializable {
                 return dq.getQuantity();
         }
         return 0;
+    }
+
+    public float getTotalPrice()
+    {
+        float totalPrice = 0.0f;
+        for (ObjectQuantity<Dish> dq : dishes) {
+            float dishesPrice = dq.getObject().getPrice() * dq.getQuantity();
+            totalPrice += dishesPrice;
+        }
+
+        return totalPrice;
     }
 
     public String toString()

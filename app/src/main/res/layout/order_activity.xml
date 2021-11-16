@@ -4,9 +4,36 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/yourOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pagina delle ordinazioni"
-        android:textSize="40dp"/>
+        android:layout_weight="1"
+        android:text="Il tuo ordine"
+        android:textSize="40sp"
+        android:textColor="@color/colorBlack"
+        android:background="@color/colorDarkRed" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorOrange"
+        android:layout_weight="30">
+
+        <LinearLayout
+            android:id="@+id/orderLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/totalPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="textEnd"
+        android:text="Totale: 0.0 €"
+        android:textSize="35sp"
+        android:textColor="@color/colorBlack"
+        android:background="@color/colorDarkRed"/>
 </LinearLayout>

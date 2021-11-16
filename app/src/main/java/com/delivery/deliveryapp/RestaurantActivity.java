@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -34,6 +35,8 @@ public class RestaurantActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.restaurant_activity);
+        getSupportActionBar().setDisplayShowTitleEnabled(false); //è stato usato appCompactActivity perchè ha il metodo getSupportFragmentManager
+        getSupportActionBar().hide();
 
         Intent intent = getIntent();
         Restaurant restaurant = (Restaurant) intent.getExtras().getSerializable("restaurant");
@@ -66,7 +69,6 @@ public class RestaurantActivity extends AppCompatActivity {
 
     public void onClick(View v)
     {
-        Log.v(TAG, "Cliccato!!");
         Intent orderIntent = new Intent(RestaurantActivity.this, OrderActivity.class);
         orderIntent.putExtra("order", this.order);
         startActivity(orderIntent);

@@ -1,10 +1,7 @@
 package com.delivery.deliveryapp.Firebase;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 
@@ -12,81 +9,155 @@ import com.delivery.deliveryapp.MainActivity;
 import com.delivery.deliveryapp.models.Dish;
 import com.delivery.deliveryapp.models.Menu;
 import com.delivery.deliveryapp.models.Restaurant;
+import com.delivery.deliveryapp.utils.GpsUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
+
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 
 public class Manager extends AsyncTask<Void, Void, Void> {
 
     private final String TAG = "DBINFO";
-    private FirebaseDatabase db;
+    private FirebaseFirestore db;
 
     private MainActivity main;
+    private double _lat, _long;
+    private double [] restaurantSquare; //cords range
+    private static int RANGE = 10; //KM
     private Task<DataSnapshot> task;
     private static boolean end;
 
-    public Manager(MainActivity main)
+    public Manager(MainActivity main, float _lat, float _long)
     {
         this.main = main;
         Manager.end = false;
 
-        this.db = FirebaseDatabase.getInstance();
+        this._lat = _lat;
+        this._long = _long;
+
+        this.db = FirebaseFirestore.getInstance();
+    }
+
+    private Menu buildMenu(final String resName, final int idx, final String menuName) {
+
+        final Menu menu = new Menu(menuName);
+        DocumentReference priceRef = db.document("restaurants/" + resName + "/menu/"+idx+"/dishes/prices");
+        priceRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot snapshot = task.getResult();
+                    for (String name : snapshot.getData().keySet())
+                    {
+                        Log.v(TAG, "Dish name: " + name);
+                        double price = snapshot.getDouble(name);
+                        Dish dish = new Dish(name, "description", (float) price);
+                        menu.add(dish);
+                    }
+                }
+            }
+        });
+
+        return menu;
+    }
+
+    private Restaurant buildRestaurant(final String resName) {
+
+        final ArrayList<Menu> menus = new ArrayList<>();
+        db.collection("restaurants/" + resName + "/menu")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            QuerySnapshot snapshot = task.getResult();
+                            int numMenus = snapshot.size();
+                            for (int i=0; i<numMenus; i++)
+                            {
+                                String menuName = (String) snapshot.getDocuments().get(i).get("nome");
+                                Log.v(TAG, "Name: " + menuName);
+                                Menu menu = buildMenu(resName, i, menuName);
+                                menus.add(menu);
+                            }
+                        }
+                    }
+                });
+
+        return new Restaurant(resName, menus);
     }
 
     public void getData()
     {
-        DatabaseReference ref = db.getReference("restaurants");
-        Query query = ref.orderByKey();
-        this.task = query.get();
-        task.addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        GeoPoint north = new GeoPoint(restaurantSquare[1], 0.0);
+        GeoPoint south = new GeoPoint(restaurantSquare[0], 0.0);
+        //GeoPoint east = new GeoPoint( 0.0, restaurantSquare[3]);
+        //GeoPoint weast = new GeoPoint(0.0, restaurantSquare[2]);
+        //filtro solo la latitudine dal db remoto, una volta scaricati i dati filtrerò sulla longitudine
+        //l'alternativa è usare i geohash: https://firebase.google.com/docs/firestore/solutions/geoqueries
+        db.collection("restaurants")
+                .whereLessThan("position", north)
+                .whereGreaterThan("position", south)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                Log.v(TAG, String.valueOf(task.getResult().child("0").child("name").getValue()));
-                DataSnapshot data = task.getResult();
-                for (long i=0; i<data.getChildrenCount(); i++)
-                {
-                    //filtro i ristoranti in base alla posizione
-                    //Log.v(TAG, String.valueOf(task.getResult().child(i+"").child("name").getValue()));
-
-                    Restaurant restaurant = new Restaurant(String.valueOf(data.child(i+"").child("name").getValue()));
-                    DataSnapshot menuData = data.child(i+"").child("menus");
-                    for (long j=0; j<menuData.getChildrenCount(); j++)
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot documentSnapshots  = task.getResult();
+                    //TODO filtrare la latitudine
+                    if (documentSnapshots.isEmpty())
                     {
-                        String menuName = String.valueOf(menuData.child(j+"").child("name").getValue());
-                        Log.d(TAG, "Menu name: " + menuName);
-                        Menu menu = new Menu(String.valueOf(menuData.child(j+"").child("name").getValue()));
-                        DataSnapshot dishes = menuData.child(j+"").child("dishes");
-                        for (long k = 0; k < dishes.getChildrenCount(); k++)
-                        {
-                            Dish dish = new Dish(String.valueOf(dishes.child(k + "").child("name").getValue()),
-                                    null,
-                                    Float.parseFloat(String.valueOf(dishes.child(k + "").child("price").getValue())));
-                            menu.add(dish);
-                        }
-                        restaurant.addMenu(menu);
+                        Log.d(TAG, "onSuccess: LIST EMPTY");
+                        return;
                     }
-                    Log.d(TAG, "Restaurant added!");
-                    main.addRestaurant(restaurant);
+                    int dim = documentSnapshots.size();
+                    for (int r=0; r<dim; r++) {
+
+                        DocumentSnapshot resRef = documentSnapshots.getDocuments().get(r);
+                        String name = resRef.getId();
+                        //------LOG------
+                        //Log.v(TAG, "Restaurant name: " + name);
+                        //GeoPoint p = (GeoPoint) resRef.get("position");
+                        //Log.v(TAG, "Lat " + p.getLatitude());
+                        //Log.v(TAG, "Long " + p.getLongitude());
+                        //----END LOG----
+
+                        Restaurant restaurant = buildRestaurant(name);
+                        //try {Thread.sleep(1000);} catch (Exception ex) {}//TODO aggiungere wait dei task ??
+                        main.addRestaurant(restaurant);
+                    }
                 }
-                Manager.end = true;
             }
         });
-
     }
 
     @Override
     public Void doInBackground(Void... v)
     {
+        while (_lat == 0 || _long == 0)
+        {   //wait until i have both cords
+            try { Thread.sleep(20); } catch (InterruptedException iex) { }
+        }
+
+        //Log.v(TAG, "In manager task, lat = " + _lat);
+        //Log.v(TAG, "In manager task, long = " + _long);
+
+        restaurantSquare = GpsUtils.computeSquareAroundPos(_lat, _long, RANGE);
+        //for (double pos : restaurantSquare)
+        //    Log.v(TAG, ""+pos);
         this.getData();
         //this.end = true;
-        while (!Manager.end); //TODO mandare fuori un segnale per ogni ristorante aggiunto di aggiornare l'interfaccia
+        while (!Manager.end);
         Log.d(TAG, "Fine");
         return null;
     }
 
     public boolean isEnded() {return Manager.end;}
+    public void setLat(double _lat) {this._lat = _lat;}
+    public void setLong(double _long) {this._long = _long;}
 }
