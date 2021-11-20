@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.delivery.deliveryapp.models.Dish;
 import com.delivery.deliveryapp.models.ObjectQuantity;
 import com.delivery.deliveryapp.models.Order;
@@ -27,17 +29,31 @@ public class DishActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dish_activity);
 
-        Intent intent = getIntent();
-        this.dish = (Dish) intent.getExtras().getSerializable("dish");
-        this.initialCount = intent.getExtras().getInt("count");
+        if (savedInstanceState == null) {
+            Intent intent = getIntent();
+            this.dish = (Dish) intent.getExtras().getSerializable("dish");
+            this.initialCount = intent.getExtras().getInt("count");
+        }
+        else
+        {
+            this.dish = (Dish) savedInstanceState.getSerializable("dish");
+            this.initialCount = savedInstanceState.getInt("count");
+        }
         TextView dishTextView = findViewById(R.id.dishTextView);
         dishTextView.setText(dish.getName());
 
         TextView counter = findViewById(R.id.counter);
         Log.v(TAG, "Quantity: " + initialCount);
-        counter.setText(""+intent.getExtras().getInt("count"));
+        counter.setText(""+this.initialCount);
+    }
 
-        //this.order = (Order) intent.getExtras().getSerializable("order");
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        TextView counter = findViewById(R.id.counter);
+        this.initialCount = Integer.parseInt(counter.getText().toString());
+        outState.putSerializable("dish", this.dish);
+        outState.putInt("count", initialCount);
     }
 
     @Override
@@ -47,20 +63,6 @@ public class DishActivity extends Activity {
         TextView counter = findViewById(R.id.counter);
         Log.v(TAG, "Quantity: " + initialCount);
         counter.setText(""+initialCount);
-    }
-
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-        //finish();
-    }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-        //finish();
     }
 
     @Override

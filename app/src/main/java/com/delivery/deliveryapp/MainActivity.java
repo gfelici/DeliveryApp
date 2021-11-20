@@ -3,6 +3,7 @@ package com.delivery.deliveryapp;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -17,36 +18,119 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
-import com.delivery.deliveryapp.Firebase.Manager;
+import androidx.annotation.NonNull;
+
+import com.delivery.deliveryapp.Firebase.DbManager;
 import com.delivery.deliveryapp.models.Restaurant;
-import com.delivery.deliveryapp.utils.GpsUtils;
 import com.delivery.deliveryapp.utils.Utils;
+
+import java.util.ArrayList;
 
 public class MainActivity extends Activity
 {
+    private ArrayList<Restaurant> restaurants;
+
     private double _lat, _long;//TODO muovere in Manager
     private LocationManager locationManager;
     private LocationListener locationListener;
     private int GPS_REQ_CODE = 10;
     final String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-    final String TAG = "PERMS";
-    final String INFO = "CORDS";
+    final String TAG = "INFO";
+    final String CORDS = "CORDS";
+
+    final DbManager manager = new DbManager(this, 0,0); //get db instance
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        restaurants = new ArrayList<Restaurant>();
+        bundle = savedInstanceState;
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
 
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        Log.v(TAG, "Onstart bundle is: " + bundle);
+        if (bundle == null) //no data saved locally, must query the db
+        {
+            bundle = new Bundle();
+            loadData();
+            Log.v(TAG, "OnStart: bundle null");
+        }
+
+        else
+        {
+            boolean reload = bundle.getBoolean("reload");
+            if (reload)
+            {
+                loadData();
+            }
+
+            else {
+                Log.v(TAG, "Get data from bundle");
+                ArrayList<Restaurant> loadedRestaurants = (ArrayList<Restaurant>) bundle.getSerializable("Restaurants");
+                Log.v(TAG, "Restaurants loaded: " + loadedRestaurants + "Bundle is: " + bundle);
+                LinearLayout l = findViewById(R.id.restaurantLayout);
+
+                if (loadedRestaurants != null && loadedRestaurants.size() != 0) {
+                    restaurants = new ArrayList<Restaurant>();
+                    l.removeAllViews();
+                    Log.v(TAG, "All views removed");
+                    for (Restaurant r : loadedRestaurants) {
+                        Log.v(TAG, "Add new restaurant: " + r.getName());
+                        addRestaurant(r);//aggiunge grafica e ogni ristorante
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //Log.v(TAG, "OnPause!");
+        if (manager.gpsSetted()) {
+            //Log.v(TAG, "Inside if onpause");
+            bundle.putBoolean("reload", false);
+            bundle.putSerializable("Restaurants", restaurants);
+        }
+        else {
+            bundle.putBoolean("reload", true);
+            manager.cancel(true);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //Log.v(TAG, "OnsaveInstanceState!");
+        if (manager.gpsSetted()) {
+            //Log.v(TAG, "Inside if onsaveinstancestate");
+            outState.putBoolean("reload", false);
+            outState.putSerializable("Restaurants", restaurants);
+        }
+        else {
+            outState.putBoolean("reload", true);
+            manager.cancel(true);
+        }
+    }
+
+    private void loadData()
+    {
+        Log.v(TAG, "Getting data from Firestore");
         _lat = _long = 0; //init location, 0 means not already got cords
-        final Manager manager = new Manager(this, 0,0); //get db instance
 
         //gps coords
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                Log.v(INFO, "lat: " + location.getLatitude() + " long: " + location.getLongitude());
+                Log.v(CORDS, "lat: " + location.getLatitude() + " long: " + location.getLongitude());
                 _lat = location.getLatitude();
                 _long = location.getLongitude();
 
@@ -88,10 +172,6 @@ public class MainActivity extends Activity
             {}
         }
 
-        //Log.d("INFO2", "Inizio");
-        //while (!manager.isEnded());
-        //try {Thread.sleep(5*1000);} catch (InterruptedException iex) {}
-
         manager.execute();
     }
 
@@ -112,12 +192,6 @@ public class MainActivity extends Activity
         }
     }
 
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-    }
-
     private void newRestaurantActivity(final Restaurant restaurant)
     {
             Intent myIntent = new Intent(MainActivity.this, RestaurantActivity.class);
@@ -127,6 +201,11 @@ public class MainActivity extends Activity
 
     public void addRestaurant(final Restaurant restaurant)
     {
+        if (restaurants == null)
+            restaurants = new ArrayList<Restaurant>();
+
+        this.restaurants.add(restaurant);
+
         LinearLayout restaurantLayout = findViewById(R.id.restaurantLayout);
 
         LinearLayout l = new LinearLayout(this);
@@ -135,12 +214,6 @@ public class MainActivity extends Activity
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         l.setLayoutParams(params);
         l.setOrientation(LinearLayout.HORIZONTAL);
-
-        //ImageView image = new ImageView(this);
-        //params = new LinearLayout.LayoutParams(Utils.dpToPx(100,this), Utils.dpToPx(100,this));
-        //image.setLayoutParams(params);
-        //image.setForegroundGravity(Gravity.LEFT);
-        //image.setImageResource(R.drawable.sushi);
 
         TextView textView = new TextView(this);
         params = new LinearLayout.LayoutParams(
@@ -152,7 +225,6 @@ public class MainActivity extends Activity
         textView.setText(restaurant.getName());
         textView.setTextSize(30);
 
-        //l.addView(image);
         l.addView(textView);
         l.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,9 +235,7 @@ public class MainActivity extends Activity
 
         restaurantLayout.addView(l);
 
-        //minimo di spazio tra un ristorante e l'altro
         Space space = new Space(this);
-        //space.getLayoutParams().height = 10;
         restaurantLayout.addView(space);
     }
 }

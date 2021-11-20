@@ -16,6 +16,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.delivery.deliveryapp.models.Dish;
@@ -30,6 +32,22 @@ public class MenuFragment extends Fragment {
     private Menu menu;
     private Order order;
 
+    private Bundle bundle;
+
+    public static MenuFragment newInstance(Menu menu, Order order) {
+        Bundle args = new Bundle();
+        args.putSerializable("menu", menu);
+        args.putSerializable("order", order);
+        MenuFragment f = new MenuFragment();
+        f.setArguments(args);
+        return f;
+    }
+
+    public MenuFragment()
+    {
+        super(R.layout.menufragment);
+    }
+
     public MenuFragment(Menu menu, Order order)
     {
         super(R.layout.menufragment);
@@ -38,8 +56,19 @@ public class MenuFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        bundle = this.getArguments();
+
+        this.menu = (Menu) bundle.get("menu");
+        this.order = (Order) bundle.getSerializable("order");
+
+
         final View rootView = inflater.inflate(R.layout.menufragment, container, false);
         LinearLayout menuLayout = (LinearLayout) rootView.findViewById(R.id.menu_layout);
         for (final Dish d : this.menu.getDishses())
@@ -49,12 +78,6 @@ public class MenuFragment extends Fragment {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             l.setLayoutParams(params);
-
-            //ImageView image = new ImageView(this.getContext());
-            //params = new LinearLayout.LayoutParams(Utils.dpToPx(100,this.getContext()), Utils.dpToPx(100,this.getContext()));
-            //image.setLayoutParams(params);
-            //image.setForegroundGravity(Gravity.LEFT);
-            //image.setImageResource(R.drawable.sushi);
 
             TextView dishText = new TextView(this.getContext());
             params = new LinearLayout.LayoutParams(
@@ -76,7 +99,6 @@ public class MenuFragment extends Fragment {
             priceText.setText(d.getPrice() + "€");
             priceText.setTextSize(20);
 
-            //l.addView(image);
             l.addView(dishText);
             l.addView(priceText);
             l.setOnClickListener(new View.OnClickListener() {
@@ -98,21 +120,10 @@ public class MenuFragment extends Fragment {
         return rootView;
     }
 
-    /*
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == Activity.RESULT_OK && requestCode == 1)
-        {
-            int count = data.getExtras().getInt("count");
-            Dish dish = (Dish) data.getExtras().getSerializable("dish");
-            this.order.setDishQuantity(dish, count);
-        }
-
-        //for (ObjectQuantity<Dish> dq : order.getDishes())
-        //    Log.v("DISH", dq.getObject().getName());
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("menu", bundle.getSerializable("menu"));
+        outState.putSerializable("order", bundle.getSerializable("order"));
     }
-    */
 }

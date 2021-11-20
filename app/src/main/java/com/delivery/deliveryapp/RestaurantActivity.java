@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.PagerAdapter;
@@ -29,6 +30,8 @@ public class RestaurantActivity extends AppCompatActivity {
 
     private Restaurant restaurant;
     private Order order; //ordine per questo ristorante. E' l'equivalente di un carrello
+    private MenuPagerAdapter menuPagerAdapter;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,19 +41,31 @@ public class RestaurantActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false); //è stato usato appCompactActivity perchè ha il metodo getSupportFragmentManager
         getSupportActionBar().hide();
 
-        Intent intent = getIntent();
-        Restaurant restaurant = (Restaurant) intent.getExtras().getSerializable("restaurant");
-        Log.v(TAG, "Restaurant name: " + restaurant.getName());
+       //this.restaurant = restaurant;
+
+        bundle = savedInstanceState;
+        if (bundle == null)
+        {
+            Intent intent = getIntent();
+            this.restaurant = (Restaurant) intent.getExtras().getSerializable("restaurant");
+            this.order = new Order(restaurant);
+            bundle = new Bundle();
+            bundle.putSerializable("restaurant", this.restaurant);
+            bundle.putSerializable("order", this.order);
+            //bundle.putSerializable("adapter", this.menuPagerAdapter);
+        }
+        else
+        {
+            this.restaurant = (Restaurant) bundle.getSerializable("restaurant");
+            this.order = (Order) bundle.getSerializable("order");
+        }
+
+        this.menuPagerAdapter = new MenuPagerAdapter(this.getSupportFragmentManager(), this.restaurant, this.order);
         TextView textView = findViewById(R.id.restaurantName);
         textView.setText(restaurant.getName());
-        this.restaurant = restaurant;
-
-        //creo una nuova ordinazione per questo ristorante
-        this.order = new Order(restaurant);
-
         tabLayout = findViewById(R.id.tab_layout);
         pager = findViewById(R.id.pager);
-        pager.setAdapter(new MenuPagerAdapter(this.getSupportFragmentManager(), this.restaurant, this.order));
+        pager.setAdapter(menuPagerAdapter);
         tabLayout.setupWithViewPager(pager);
     }
 
@@ -59,7 +74,15 @@ public class RestaurantActivity extends AppCompatActivity {
     {
         super.onStart();
     }
-    
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("restaurant", bundle.getSerializable("restaurant"));
+        outState.putSerializable("order", bundle.getSerializable("order"));
+        //outState.putSerializable("adapter", bundle.getSerializable("adapter"));
+    }
+
     private void addTab(String tabName, ArrayList<String> items)
     {
         TabLayout.Tab tab = tabLayout.newTab();
@@ -82,10 +105,12 @@ public class RestaurantActivity extends AppCompatActivity {
         if (resultCode == Activity.RESULT_OK){ //&& requestCode == 1) {
             int count = data.getExtras().getInt("count");
             Dish dish = (Dish) data.getExtras().getSerializable("dish");
-            Log.v(TAG, "Returned value: "+count);
+            //Log.v(TAG, "Returned value: "+count);
             this.order.setDishQuantity(dish, count);
-            Log.v(TAG, "Dish quantity: "+this.order.getDishQuantity(dish));
-            Log.v(ORDER, order.toString());
+            bundle.putSerializable("order", this.order);
+            //Log.v(TAG, "Dish quantity: "+this.order.getDishQuantity(dish));
+            //Log.v(ORDER, order.toString());
+
         }
     }
 }
