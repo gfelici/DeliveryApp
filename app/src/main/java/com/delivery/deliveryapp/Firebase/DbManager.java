@@ -20,8 +20,13 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class DbManager extends AsyncTask<Void, Void, Void> {
+
+    public static FirebaseUser user;
 
     private final String TAG = "DBINFO";
     private FirebaseFirestore db;
@@ -146,16 +151,10 @@ public class DbManager extends AsyncTask<Void, Void, Void> {
             try { Thread.sleep(5); } catch (InterruptedException iex) { }
         }
         this.gpsSetted = true;
-        //Log.v(TAG, "In manager task, lat = " + _lat);
-        //Log.v(TAG, "In manager task, long = " + _long);
 
         restaurantSquare = GpsUtils.computeSquareAroundPos(_lat, _long, RANGE);
-        //for (double pos : restaurantSquare)
-        //    Log.v(TAG, ""+pos);
 
         this.getData();
-        //this.end = true;
-        while (!DbManager.end);
 
         Log.d(TAG, "Fine");
         return null;

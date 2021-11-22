@@ -4,23 +4,6 @@
             "outputFile": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ka\\values-ka.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\143cdf7b932fea74de1c7a6cc2287d77\\play-services-base-17.0.0\\res\\values-ka\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "245,348,529,655,763,976,1108,1256,1389,1621,1727,1913,2039,2259,2424,2516,2603",
-                        "endColumns": "102,180,125,107,212,131,147,132,231,105,185,125,219,164,91,86,100",
-                        "endOffsets": "347,528,654,762,975,1107,1255,1388,1620,1726,1912,2038,2258,2423,2515,2602,2703"
-                    },
-                    "to": {
-                        "startLines": "37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3377,3484,3665,3795,3907,4120,4256,4408,4747,4979,5089,5275,5405,5625,5794,5890,5981",
-                        "endColumns": "106,180,129,111,212,135,151,136,231,109,185,129,219,168,95,90,104",
-                        "endOffsets": "3479,3660,3790,3902,4115,4251,4403,4540,4974,5084,5270,5400,5620,5789,5885,5976,6081"
-                    }
-                },
-                {
                     "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\282766edc39cbd4656fa6b8cce1a3dca\\core-1.3.1\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "2",
@@ -74,7 +57,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\c222dcc9b18eedd7b7f7222c75542eda\\jetified-play-services-basement-17.0.0\\res\\values-ka\\values.xml",
+                    "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\f6c516959eb26651e9628c2924e3d8d5\\jetified-play-services-basement-17.1.0\\res\\values-ka\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -88,6 +71,23 @@
                         "startOffsets": "4545",
                         "endColumns": "201",
                         "endOffsets": "4742"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\ec6d2ee40e97d049551dc676285bff63\\play-services-base-17.1.0\\res\\values-ka\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "245,348,529,655,763,976,1108,1256,1389,1621,1727,1913,2039,2259,2424,2516,2603",
+                        "endColumns": "102,180,125,107,212,131,147,132,231,105,185,125,219,164,91,86,100",
+                        "endOffsets": "347,528,654,762,975,1107,1255,1388,1620,1726,1912,2038,2258,2423,2515,2602,2703"
+                    },
+                    "to": {
+                        "startLines": "37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3377,3484,3665,3795,3907,4120,4256,4408,4747,4979,5089,5275,5405,5625,5794,5890,5981",
+                        "endColumns": "106,180,129,111,212,135,151,136,231,109,185,129,219,168,95,90,104",
+                        "endOffsets": "3479,3660,3790,3902,4115,4251,4403,4540,4974,5084,5270,5400,5620,5789,5885,5976,6081"
                     }
                 }
             ]

@@ -4,6 +4,23 @@
             "outputFile": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-am\\values-am.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\ec6d2ee40e97d049551dc676285bff63\\play-services-base-17.1.0\\res\\values-am\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "245,345,516,636,736,922,1043,1177,1304,1491,1592,1768,1889,2083,2236,2322,2405",
+                        "endColumns": "99,170,119,99,185,120,133,126,186,100,175,120,193,152,85,82,95",
+                        "endOffsets": "344,515,635,735,921,1042,1176,1303,1490,1591,1767,1888,2082,2235,2321,2404,2500"
+                    },
+                    "to": {
+                        "startLines": "37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3227,3331,3502,3626,3730,3916,4041,4179,4501,4688,4793,4969,5094,5288,5445,5535,5622",
+                        "endColumns": "103,170,123,103,185,124,137,130,186,104,175,124,193,156,89,86,99",
+                        "endOffsets": "3326,3497,3621,3725,3911,4036,4174,4305,4683,4788,4964,5089,5283,5440,5530,5617,5717"
+                    }
+                },
+                {
                     "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\fdaf49db44447fea649237adb6f2d42b\\material-1.3.0\\res\\values-am\\values-am.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59",
@@ -40,7 +57,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\c222dcc9b18eedd7b7f7222c75542eda\\jetified-play-services-basement-17.0.0\\res\\values-am\\values.xml",
+                    "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\f6c516959eb26651e9628c2924e3d8d5\\jetified-play-services-basement-17.1.0\\res\\values-am\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -71,23 +88,6 @@
                         "startOffsets": "9473",
                         "endColumns": "100",
                         "endOffsets": "9569"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\143cdf7b932fea74de1c7a6cc2287d77\\play-services-base-17.0.0\\res\\values-am\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "245,345,516,636,736,922,1043,1177,1304,1491,1592,1768,1889,2083,2236,2322,2405",
-                        "endColumns": "99,170,119,99,185,120,133,126,186,100,175,120,193,152,85,82,95",
-                        "endOffsets": "344,515,635,735,921,1042,1176,1303,1490,1591,1767,1888,2082,2235,2321,2404,2500"
-                    },
-                    "to": {
-                        "startLines": "37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3227,3331,3502,3626,3730,3916,4041,4179,4501,4688,4793,4969,5094,5288,5445,5535,5622",
-                        "endColumns": "103,170,123,103,185,124,137,130,186,104,175,124,193,156,89,86,99",
-                        "endOffsets": "3326,3497,3621,3725,3911,4036,4174,4305,4683,4788,4964,5089,5283,5440,5530,5617,5717"
                     }
                 }
             ]

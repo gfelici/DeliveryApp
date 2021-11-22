@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,7 @@
         <activity android:name=".RestaurantActivity" />
         <activity android:name=".DishActivity" />
         <activity android:name=".OrderActivity" />
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>

@@ -990,7 +990,7 @@ color checkbox_themeable_attribute_color
 color colorAccent
 color colorBlack
 color colorLightOrange
-color colorOrange
+color colorLightYellow
 color colorPrimary
 color colorPrimaryDark
 color colorYellow
@@ -1944,6 +1944,8 @@ id line3
 id linear
 id listMode
 id list_item
+id loading
+id login
 id masked
 id material_clock_display
 id material_clock_face
@@ -2020,6 +2022,7 @@ id parent
 id parentPanel
 id parentRelative
 id parent_matrix
+id password
 id password_toggle
 id path
 id pathRelative
@@ -2033,6 +2036,7 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id register
 id restaurantLayout
 id restaurantName
 id reverseSawtooth
@@ -2152,6 +2156,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id username
 id view_offset_helper
 id visible
 id wide
@@ -2222,6 +2227,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_login
 layout activity_main
 layout custom_dialog
 layout design_bottom_navigation_item
