@@ -2124,6 +2124,10 @@
         "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\143cdf7b932fea74de1c7a6cc2287d77\\play-services-base-17.0.0\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
     },
     {
+        "merged": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_box.xml.flat",
+        "source": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\src\\main\\res\\drawable\\box.xml"
+    },
+    {
         "merged": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\a5ec2b94bdedaa6dbafaaec0cbe365aa\\appcompat-1.2.0\\res\\drawable-xhdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
     },

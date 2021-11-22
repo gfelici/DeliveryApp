@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDarkRed">
+    android:background="@color/colorLightOrange">
 
     <TextView
         android:id="@+id/restaurantName"
@@ -29,11 +29,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textAlignment="textEnd"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:onClick="onClick"
         android:text="Il tuo ordine"
-        android:textSize="40sp"
         android:textColor="@color/colorBlack"
-        android:onClick="onClick"/>
+        android:textSize="40sp" />
 
 </LinearLayout>

@@ -11,127 +11,128 @@
 9-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:4:5-67
-11-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:4:22-64
+11-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:5:22-64
 12    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-12-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:5:5-79
-12-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:5:22-76
+12-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:6:5-79
+12-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:6:22-76
 13    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-13-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:6:5-81
-13-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:6:22-78
-14    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
-15    <!-- <uses-sdk android:minSdkVersion="14"/> -->
-16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-16-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:25:5-79
-16-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:25:22-76
-17
-18    <application
-18-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:8:5-28:19
-19        android:allowBackup="true"
-19-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:9:9-35
-20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-20-->[androidx.core:core:1.3.1] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\282766edc39cbd4656fa6b8cce1a3dca\core-1.3.1\AndroidManifest.xml:24:18-86
-21        android:debuggable="true"
-22        android:icon="@mipmap/ic_launcher"
-22-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:10:9-43
-23        android:label="@string/app_name"
-23-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:11:9-41
-24        android:resizeableActivity="false"
-24-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:15:9-43
-25        android:roundIcon="@mipmap/ic_launcher_round"
-25-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:12:9-54
-26        android:supportsRtl="true"
-26-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:13:9-35
-27        android:testOnly="true"
-28        android:theme="@style/AppTheme" >
-28-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:14:9-40
-29        <activity
-29-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:17:9-24:20
-30            android:name="com.delivery.deliveryapp.MainActivity"
-30-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:17:19-47
-31            android:screenOrientation="portrait" >
-31-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:18:13-49
-32            <intent-filter>
-32-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:19:13-23:29
-33                <action android:name="android.intent.action.MAIN" />
-33-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:20:17-69
-33-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:20:25-66
-34
-35                <category android:name="android.intent.category.LAUNCHER" />
-35-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:22:17-77
-35-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:22:27-74
-36            </intent-filter>
-37        </activity>
-38        <activity android:name="com.delivery.deliveryapp.RestaurantActivity" />
-38-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:25:9-55
-38-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:25:19-53
-39        <activity android:name="com.delivery.deliveryapp.DishActivity" />
-39-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:26:9-49
-39-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:26:19-47
-40        <activity android:name="com.delivery.deliveryapp.OrderActivity" />
+13-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:7:5-81
+13-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:7:22-78
+14
+15    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+16    <!-- <uses-sdk android:minSdkVersion="14"/> -->
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:25:5-79
+17-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:25:22-76
+18
+19    <application
+19-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:9:5-29:19
+20        android:allowBackup="true"
+20-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:10:9-35
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.3.1] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\282766edc39cbd4656fa6b8cce1a3dca\core-1.3.1\AndroidManifest.xml:24:18-86
+22        android:debuggable="true"
+23        android:icon="@mipmap/ic_launcher"
+23-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:11:9-43
+24        android:label="@string/app_name"
+24-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:12:9-41
+25        android:resizeableActivity="false"
+25-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:13:9-43
+26        android:roundIcon="@mipmap/ic_launcher_round"
+26-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:14:9-54
+27        android:supportsRtl="true"
+27-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:15:9-35
+28        android:testOnly="true"
+29        android:theme="@style/AppTheme" >
+29-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:16:9-40
+30        <activity
+30-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:18:9-25:20
+31            android:name="com.delivery.deliveryapp.MainActivity"
+31-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:19:13-41
+32            android:screenOrientation="portrait" >
+32-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:20:13-49
+33            <intent-filter>
+33-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:21:13-24:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:22:17-69
+34-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:22:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:23:17-77
+36-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:23:27-74
+37            </intent-filter>
+38        </activity>
+39        <activity android:name="com.delivery.deliveryapp.RestaurantActivity" />
+39-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:26:9-56
+39-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:26:19-53
+40        <activity android:name="com.delivery.deliveryapp.DishActivity" />
 40-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:27:9-50
-40-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:27:19-48
-41
-42        <service
-42-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:29:9-35:19
-43            android:name="com.google.firebase.components.ComponentDiscoveryService"
-43-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:30:13-84
-44            android:directBootAware="true"
-44-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:35:13-43
-45            android:exported="false" >
-45-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:31:13-37
-46            <meta-data
-46-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:32:13-34:85
-47                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-47-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:33:17-109
-48                android:value="com.google.firebase.components.ComponentRegistrar" />
-48-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:34:17-82
-49            <meta-data
-49-->[com.google.firebase:firebase-firestore:22.1.1] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\339c61059f17395899b28f3ee061bfe0\jetified-firebase-firestore-22.1.1\AndroidManifest.xml:20:13-22:85
-50                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-50-->[com.google.firebase:firebase-firestore:22.1.1] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\339c61059f17395899b28f3ee061bfe0\jetified-firebase-firestore-22.1.1\AndroidManifest.xml:21:17-111
-51                android:value="com.google.firebase.components.ComponentRegistrar" />
-51-->[com.google.firebase:firebase-firestore:22.1.1] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\339c61059f17395899b28f3ee061bfe0\jetified-firebase-firestore-22.1.1\AndroidManifest.xml:22:17-82
-52            <!--
-53                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
-54                clients to use it as well, by defining this registrar in their own core/common library.
-55            -->
-56            <meta-data
-56-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:43:13-45:85
-57                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
-57-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:44:17-121
-58                android:value="com.google.firebase.components.ComponentRegistrar" />
-58-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:45:17-82
-59        </service>
-60
-61        <activity
-61-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\143cdf7b932fea74de1c7a6cc2287d77\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
-62            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-62-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\143cdf7b932fea74de1c7a6cc2287d77\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
-63            android:exported="false"
-63-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\143cdf7b932fea74de1c7a6cc2287d77\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
-64            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-64-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\143cdf7b932fea74de1c7a6cc2287d77\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
-65
-66        <provider
-66-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:26:9-31:39
-67            android:name="com.google.firebase.provider.FirebaseInitProvider"
-67-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:27:13-77
-68            android:authorities="com.delivery.deliveryapp.firebaseinitprovider"
-68-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:28:13-72
-69            android:directBootAware="true"
-69-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:29:13-43
-70            android:exported="false"
-70-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:30:13-37
-71            android:initOrder="100" />
-71-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:31:13-36
-72
-73        <meta-data
-73-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\c222dcc9b18eedd7b7f7222c75542eda\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
-74            android:name="com.google.android.gms.version"
-74-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\c222dcc9b18eedd7b7f7222c75542eda\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
-75            android:value="@integer/google_play_services_version" />
-75-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\c222dcc9b18eedd7b7f7222c75542eda\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
-76    </application>
-77
-78</manifest>
+40-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:27:19-47
+41        <activity android:name="com.delivery.deliveryapp.OrderActivity" />
+41-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:28:9-51
+41-->C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:28:19-48
+42
+43        <service
+43-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:29:9-35:19
+44            android:name="com.google.firebase.components.ComponentDiscoveryService"
+44-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:30:13-84
+45            android:directBootAware="true"
+45-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:35:13-43
+46            android:exported="false" >
+46-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:31:13-37
+47            <meta-data
+47-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:32:13-34:85
+48                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+48-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:33:17-109
+49                android:value="com.google.firebase.components.ComponentRegistrar" />
+49-->[com.google.firebase:firebase-database:19.7.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\07e582d50a18558be7e320b173a507dc\firebase-database-19.7.0\AndroidManifest.xml:34:17-82
+50            <meta-data
+50-->[com.google.firebase:firebase-firestore:22.1.1] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\339c61059f17395899b28f3ee061bfe0\jetified-firebase-firestore-22.1.1\AndroidManifest.xml:20:13-22:85
+51                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+51-->[com.google.firebase:firebase-firestore:22.1.1] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\339c61059f17395899b28f3ee061bfe0\jetified-firebase-firestore-22.1.1\AndroidManifest.xml:21:17-111
+52                android:value="com.google.firebase.components.ComponentRegistrar" />
+52-->[com.google.firebase:firebase-firestore:22.1.1] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\339c61059f17395899b28f3ee061bfe0\jetified-firebase-firestore-22.1.1\AndroidManifest.xml:22:17-82
+53            <!--
+54                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
+55                clients to use it as well, by defining this registrar in their own core/common library.
+56            -->
+57            <meta-data
+57-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:43:13-45:85
+58                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
+58-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:44:17-121
+59                android:value="com.google.firebase.components.ComponentRegistrar" />
+59-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:45:17-82
+60        </service>
+61
+62        <activity
+62-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\143cdf7b932fea74de1c7a6cc2287d77\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+63            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+63-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\143cdf7b932fea74de1c7a6cc2287d77\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+64            android:exported="false"
+64-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\143cdf7b932fea74de1c7a6cc2287d77\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+65            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+65-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\143cdf7b932fea74de1c7a6cc2287d77\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+66
+67        <provider
+67-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:26:9-31:39
+68            android:name="com.google.firebase.provider.FirebaseInitProvider"
+68-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:27:13-77
+69            android:authorities="com.delivery.deliveryapp.firebaseinitprovider"
+69-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:28:13-72
+70            android:directBootAware="true"
+70-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:29:13-43
+71            android:exported="false"
+71-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:30:13-37
+72            android:initOrder="100" />
+72-->[com.google.firebase:firebase-common:19.5.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\bbee662b505a019941c695403b759afd\jetified-firebase-common-19.5.0\AndroidManifest.xml:31:13-36
+73
+74        <meta-data
+74-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\c222dcc9b18eedd7b7f7222c75542eda\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+75            android:name="com.google.android.gms.version"
+75-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\c222dcc9b18eedd7b7f7222c75542eda\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+76            android:value="@integer/google_play_services_version" />
+76-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\c222dcc9b18eedd7b7f7222c75542eda\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+77    </application>
+78
+79</manifest>

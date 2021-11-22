@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -212,8 +214,12 @@ public class MainActivity extends Activity
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(Utils.dpToPx(10, this), Utils.dpToPx(10, this),
+                Utils.dpToPx(10, this), Utils.dpToPx(10, this));
         l.setLayoutParams(params);
         l.setOrientation(LinearLayout.HORIZONTAL);
+
+        l.setBackground(getDrawable(R.drawable.box));
 
         TextView textView = new TextView(this);
         params = new LinearLayout.LayoutParams(
@@ -224,6 +230,7 @@ public class MainActivity extends Activity
         textView.setGravity(Gravity.LEFT);
         textView.setText(restaurant.getName());
         textView.setTextSize(30);
+        textView.setTextColor(Color.BLACK);
 
         l.addView(textView);
         l.setOnClickListener(new View.OnClickListener() {

@@ -2,6 +2,7 @@ package com.delivery.deliveryapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -77,7 +78,11 @@ public class MenuFragment extends Fragment {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            params.setMargins(Utils.dpToPx(10, this.getContext()), Utils.dpToPx(10, this.getContext()),
+                    Utils.dpToPx(10, this.getContext()), Utils.dpToPx(10, this.getContext()));
             l.setLayoutParams(params);
+            l.setBackground(this.getActivity().getDrawable(R.drawable.box));
 
             TextView dishText = new TextView(this.getContext());
             params = new LinearLayout.LayoutParams(
@@ -88,6 +93,7 @@ public class MenuFragment extends Fragment {
             dishText.setGravity(Gravity.LEFT);
             dishText.setText(d.getName());
             dishText.setTextSize(20);
+            dishText.setTextColor(Color.BLACK);
 
             TextView priceText = new TextView(this.getContext());
             params = new LinearLayout.LayoutParams(
@@ -98,6 +104,7 @@ public class MenuFragment extends Fragment {
             priceText.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
             priceText.setText(d.getPrice() + "€");
             priceText.setTextSize(20);
+            priceText.setTextColor(Color.BLACK);
 
             l.addView(dishText);
             l.addView(priceText);
@@ -123,7 +130,7 @@ public class MenuFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable("menu", bundle.getSerializable("menu"));
-        outState.putSerializable("order", bundle.getSerializable("order"));
+        outState.putSerializable("menu", this.menu);
+        outState.putSerializable("order", this.order);
     }
 }
