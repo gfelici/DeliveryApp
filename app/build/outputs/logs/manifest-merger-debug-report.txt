@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-32:12
+ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-34:12
 MERGED from [com.google.android.material:material:1.3.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\fdaf49db44447fea649237adb6f2d42b\material-1.3.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\fb39d5c985131b02b2d0a9d840e92962\constraintlayout-2.0.1\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\a5ec2b94bdedaa6dbafaaec0cbe365aa\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
@@ -51,20 +51,20 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\gabriele\.gradle
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\0d1a09f8943f71063fa332134bcc33b5\annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:protolite-well-known-types:17.1.1] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\b50a1b0623c47ba0041a511a8984a237\protolite-well-known-types-17.1.1\AndroidManifest.xml:2:1-11:12
 MERGED from [io.grpc:grpc-android:1.28.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\85be6ad45a43adca5714b98893f9d451\grpc-android-1.28.0\AndroidManifest.xml:2:1-13:12
-INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-34:12
+INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-34:12
 	package
 		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:3:5-39
 		INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-32:12
+		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-34:12
 		INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-32:12
+		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:1-34:12
 		INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:2:11-69
@@ -87,7 +87,7 @@ ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xm
 	android:name
 		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:7:22-78
 application
-ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:9:5-30:19
+ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:9:5-32:19
 MERGED from [com.google.android.material:material:1.3.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\fdaf49db44447fea649237adb6f2d42b\material-1.3.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.3.0] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\fdaf49db44447fea649237adb6f2d42b\material-1.3.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\gabriele\.gradle\caches\transforms-2\files-2.1\fb39d5c985131b02b2d0a9d840e92962\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
@@ -131,37 +131,43 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\ga
 	android:theme
 		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:16:9-40
 activity#com.delivery.deliveryapp.LoginActivity
-ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:18:9-25:20
+ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:18:9-26:20
 	android:screenOrientation
 		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:20:13-49
+	android:noHistory
+		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:21:13-37
 	android:name
 		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:19:13-42
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:21:13-24:29
+ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:22:13-25:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:22:17-69
+ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:23:17-69
 	android:name
-		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:22:25-66
+		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:23:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:23:17-77
+ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:24:17-77
 	android:name
-		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:23:27-74
+		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:24:27-74
 activity#com.delivery.deliveryapp.RestaurantActivity
-ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:26:9-56
+ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:27:9-56
 	android:name
-		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:26:19-53
+		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:27:19-53
 activity#com.delivery.deliveryapp.DishActivity
-ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:27:9-50
+ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:28:9-50
 	android:name
-		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:27:19-47
+		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:28:19-47
 activity#com.delivery.deliveryapp.OrderActivity
-ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:28:9-51
+ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:29:9-51
 	android:name
-		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:28:19-48
+		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:29:19-48
 activity#com.delivery.deliveryapp.MainActivity
-ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:29:9-49
+ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:30:9-49
 	android:name
-		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:29:19-47
+		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:30:19-47
+activity#com.delivery.deliveryapp.SettingsActivity
+ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:31:9-53
+	android:name
+		ADDED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml:31:19-51
 uses-sdk
 INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\gabriele\Desktop\DeliveryApp\app\src\main\AndroidManifest.xml

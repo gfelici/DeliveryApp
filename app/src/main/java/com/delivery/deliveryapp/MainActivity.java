@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -16,6 +15,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
@@ -73,7 +73,6 @@ public class MainActivity extends Activity
             }
 
             else {
-                Log.v(TAG, "Get data from bundle");
                 ArrayList<Restaurant> loadedRestaurants = (ArrayList<Restaurant>) bundle.getSerializable("Restaurants");
                 Log.v(TAG, "Restaurants loaded: " + loadedRestaurants + "Bundle is: " + bundle);
                 LinearLayout l = findViewById(R.id.restaurantLayout);
@@ -81,22 +80,27 @@ public class MainActivity extends Activity
                 if (loadedRestaurants != null && loadedRestaurants.size() != 0) {
                     restaurants = new ArrayList<Restaurant>();
                     l.removeAllViews();
-                    Log.v(TAG, "All views removed");
                     for (Restaurant r : loadedRestaurants) {
-                        Log.v(TAG, "Add new restaurant: " + r.getName());
                         addRestaurant(r);//aggiunge grafica e ogni ristorante
                     }
                 }
             }
         }
+
+        Button settings = this.findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        //Log.v(TAG, "OnPause!");
         if (manager.gpsSetted()) {
-            //Log.v(TAG, "Inside if onpause");
             bundle.putBoolean("reload", false);
             bundle.putSerializable("Restaurants", restaurants);
         }
@@ -109,9 +113,7 @@ public class MainActivity extends Activity
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        //Log.v(TAG, "OnsaveInstanceState!");
         if (manager.gpsSetted()) {
-            //Log.v(TAG, "Inside if onsaveinstancestate");
             outState.putBoolean("reload", false);
             outState.putSerializable("Restaurants", restaurants);
         }

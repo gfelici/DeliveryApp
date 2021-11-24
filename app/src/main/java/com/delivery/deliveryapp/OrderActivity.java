@@ -8,21 +8,23 @@ import android.text.Layout;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.delivery.deliveryapp.Firebase.DbManager;
 import com.delivery.deliveryapp.models.Dish;
 import com.delivery.deliveryapp.models.ObjectQuantity;
 import com.delivery.deliveryapp.models.Order;
-import com.delivery.deliveryapp.models.Restaurant;
 import com.delivery.deliveryapp.utils.Utils;
-import com.google.common.io.LineReader;
 
 public class OrderActivity extends Activity {
 
     private Order order;
     private LinearLayout orderLayout;
+    private DbManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,6 @@ public class OrderActivity extends Activity {
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
 
-            //params.setMarginStart(Utils.dpToPx(10,this));
             noOrderText.setLayoutParams(params);
             noOrderText.setGravity(Gravity.CENTER);
             noOrderText.setText("Ancora nessun ordine");
@@ -53,6 +54,43 @@ public class OrderActivity extends Activity {
         }
         TextView total = findViewById(R.id.totalPrice);
         total.setText("Totale: " + order.getTotalPrice() + " €");
+
+        this.dbManager = new DbManager();
+        dbManager.getUserData(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Button confirm = this.findViewById(R.id.buttonConfirm);
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText txtName, txtAddress, txtCity;
+                txtName = findViewById(R.id.editTextName);
+                txtAddress = findViewById(R.id.editTextAddress);
+                txtCity = findViewById(R.id.editTextCity);
+
+                String name = txtName.getText().toString();
+                String address = txtAddress.getText().toString();
+                String city = txtCity.getText().toString();
+
+                if (name.length() == 0 || address.length() == 0 || city.length() == 0)
+                {
+                    Toast.makeText(getApplicationContext(), "Campi vuoti", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                dbManager = new DbManager();
+                dbManager.updateOrder(getApplicationContext(), name, address, city, order);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     public void addDishCounter(final ObjectQuantity<Dish> dq)
@@ -107,10 +145,5 @@ public class OrderActivity extends Activity {
 
         l.addView(count_and_price_layout);
         orderLayout.addView(l);
-
-        //minimo di spazio tra un ordine e l'altro
-        Space space = new Space(this);
-        //space.getLayoutParams().height = 10;
-        orderLayout.addView(space);
     }
 }

@@ -82,8 +82,9 @@ public class LoginActivity extends Activity {
 
                             Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
                             LoginActivity.this.startActivity(myIntent);
+                            //myIntent.setFlags(Inte)
+                            finish();
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.e(TAG, "Username o password errati " + task.getException().getMessage());
                             Toast.makeText(getApplicationContext(), "Autenticazione fallita", Toast.LENGTH_LONG).show();
                         }

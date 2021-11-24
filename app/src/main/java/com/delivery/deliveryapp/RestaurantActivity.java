@@ -9,13 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.delivery.deliveryapp.models.Dish;
-import com.delivery.deliveryapp.models.Menu;
-import com.delivery.deliveryapp.models.ObjectQuantity;
 import com.delivery.deliveryapp.models.Order;
 import com.delivery.deliveryapp.models.Restaurant;
 import com.google.android.material.tabs.TabLayout;
@@ -41,8 +37,6 @@ public class RestaurantActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false); //è stato usato appCompactActivity perchè ha il metodo getSupportFragmentManager
         getSupportActionBar().hide();
 
-       //this.restaurant = restaurant;
-
         bundle = savedInstanceState;
         if (bundle == null)
         {
@@ -52,7 +46,6 @@ public class RestaurantActivity extends AppCompatActivity {
             bundle = new Bundle();
             bundle.putSerializable("restaurant", this.restaurant);
             bundle.putSerializable("order", this.order);
-            //bundle.putSerializable("adapter", this.menuPagerAdapter);
         }
         else
         {

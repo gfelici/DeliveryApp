@@ -1817,6 +1817,7 @@ id beginning
 id blocking
 id bottom
 id bounce
+id btnSave
 id buttonConfirm
 id buttonPanel
 id cancel_button
@@ -2013,6 +2014,7 @@ id notification_main_column_container
 id off
 id on
 id orderLayout
+id orders
 id outline
 id outward
 id packed
@@ -2069,6 +2071,7 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
+id settings
 id shortcut
 id showCustom
 id showHome
@@ -2229,6 +2232,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_login
 layout activity_main
+layout activity_settings
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

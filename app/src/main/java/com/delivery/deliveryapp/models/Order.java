@@ -79,4 +79,9 @@ public class Order implements Serializable {
         }
         return orderStr;
     }
+
+    public Restaurant getRestaurant()
+    {
+        return this.restaurant;
+    }
 }

@@ -1,6 +1,5 @@
 package com.delivery.deliveryapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,12 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,7 +17,6 @@ import androidx.fragment.app.Fragment;
 
 import com.delivery.deliveryapp.models.Dish;
 import com.delivery.deliveryapp.models.Menu;
-import com.delivery.deliveryapp.models.ObjectQuantity;
 import com.delivery.deliveryapp.models.Order;
 import com.delivery.deliveryapp.utils.Utils;
 
@@ -72,7 +65,7 @@ public class MenuFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.menufragment, container, false);
         LinearLayout menuLayout = (LinearLayout) rootView.findViewById(R.id.menu_layout);
-        for (final Dish d : this.menu.getDishses())
+        for (final Dish d : this.menu.getDishes())
         {
             LinearLayout l = new LinearLayout(this.getContext()); //TODO cambiare layout per nomi lunghi
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -111,12 +104,9 @@ public class MenuFragment extends Fragment {
             l.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.v(TAG, "Item clicked: " + d.getName());
                     Intent myIntent = new Intent(getActivity(), DishActivity.class);
                     myIntent.putExtra("dish", d);
-                    Log.v(TAG, "Dish quantity in fragment:" + order.getDishQuantity(d));
                     myIntent.putExtra("count", order.getDishQuantity(d));
-                    //startActivity(myIntent);
                     startActivityForResult(myIntent,1);
                 }
             });
