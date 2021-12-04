@@ -37,22 +37,24 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ristoranti intorno a te:"
         android:textSize="25dp"
         android:textColor="@color/colorBlack"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorYellow">
+        android:background="@color/colorLightYellow">
 
         <LinearLayout
             android:id="@+id/restaurantLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical">
+
+        </LinearLayout>
 
     </ScrollView>
 </LinearLayout>

@@ -11,11 +11,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.delivery.deliveryapp.HistoryActivity;
 import com.delivery.deliveryapp.MainActivity;
 import com.delivery.deliveryapp.R;
+import com.delivery.deliveryapp.RestaurantActivity;
 import com.delivery.deliveryapp.SettingsActivity;
 import com.delivery.deliveryapp.models.Dish;
 import com.delivery.deliveryapp.models.Menu;
+import com.delivery.deliveryapp.models.ObjectQuantity;
 import com.delivery.deliveryapp.models.Order;
 import com.delivery.deliveryapp.models.Restaurant;
 import com.delivery.deliveryapp.utils.GpsUtils;
@@ -29,6 +32,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -172,6 +176,8 @@ public class DbManager extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {//TODO da rimuovere
         super.onPostExecute(aVoid);
+        TextView info = main.findViewById(R.id.info);
+        info.setText("Ristoranti intorno a te: ");
         Log.v(TAG, "End");
     }
 
@@ -200,7 +206,6 @@ public class DbManager extends AsyncTask<Void, Void, Void> {
                 });
     }
 
-
      //Activity può essere SettingsActivity o UserActivity che entrambe richiedono gli stessi campi
     public void getUserData(final Activity activity)
     {
@@ -226,27 +231,16 @@ public class DbManager extends AsyncTask<Void, Void, Void> {
         });
     }
 
-    private void updateDishes(final Context ctx, final String docId, final Order order)
+    private void updateDishes(final String docId, final Order order)
     {
-        Map<String, Object> dishData = new HashMap<>();
-        dishData.put("count", 2);
-        dishData.put("price", 5.5);
+        for (ObjectQuantity<Dish> qd: order.getDishes()) {
 
-        db.document("orders/" + docId + "/dishes/piatto3").set(dishData)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "Document successfully written!");
-                        Toast.makeText(ctx, "Aggiornato", Toast.LENGTH_SHORT);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.v(TAG, "Error writing document", e);
-                        Toast.makeText(ctx, "Errore nell'aggiornamento", Toast.LENGTH_SHORT);
-                    }
-                });
+            Map<String, Object> dishData = new HashMap<>();
+            dishData.put("count", qd.getQuantity());
+            dishData.put("price", qd.getObject().getPrice());
+
+            db.document("orders/" + docId + "/dishes/" + qd.getObject().getName()).set(dishData);
+        }
     }
 
     public void updateOrder(final Context ctx, String name, String address, String city, final Order order)
@@ -258,15 +252,13 @@ public class DbManager extends AsyncTask<Void, Void, Void> {
         orderData.put("name", name);
         orderData.put("city", city);
         orderData.put("deliveryTime", Timestamp.now()); //TODO mettere ora di consegna preferita
-        //orderData.put("order", order);
+        orderData.put("total", order.getTotalPrice());
 
         db.collection("orders").add(orderData)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        //Log.d(TAG, "Document successfully written!");
-                        //Toast.makeText(ctx, "Aggiornato", Toast.LENGTH_SHORT);
-                        updateDishes(ctx, documentReference.getId(), order);
+                        updateDishes(documentReference.getId(), order);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -276,6 +268,61 @@ public class DbManager extends AsyncTask<Void, Void, Void> {
                         Toast.makeText(ctx, "Errore nell'aggiornamento", Toast.LENGTH_SHORT);
                     }
                 });
+    }
+
+    public void getOrder(final HistoryActivity historyActivity)
+    {
+        db.collection("orders").whereEqualTo("user", user.getEmail()).orderBy("deliveryTime", Query.Direction.DESCENDING)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot snapshot = task.getResult();
+
+                    int numOrders = snapshot.size();
+                    for (int i = 0; i < numOrders; i++) {
+                        String resName = (String) snapshot.getDocuments().get(i).get("restaurant");
+                        double total = snapshot.getDocuments().get(i).getDouble("total");
+                        Log.v(TAG, resName);
+                        Log.v(TAG, total+"");
+
+                        historyActivity.addOrder(resName, total, null);
+                    }
+                }
+            }
+        });
+    }
+
+    //fa un check che non ci sia già un ordine pendente
+    public void checkOrder(final RestaurantActivity restaurantActivity)
+    {
+        db.collection("orders").whereEqualTo("user", user.getEmail()).orderBy("deliveryTime", Query.Direction.DESCENDING)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot snapshot = task.getResult();
+
+                    int numOrders = snapshot.size();
+                    if (numOrders > 0) //ho almeno un ordine nella storia
+                    {
+                        Timestamp lastDelivery = (Timestamp) snapshot.getDocuments()
+                                .get(0).get("deliveryTime"); //prendo il primo, gli ordini sono ordinati dal più recente
+                        Timestamp now = Timestamp.now();
+
+                        if (now.getSeconds() < lastDelivery.getSeconds())
+                        {
+                            Log.v(TAG, "C'è un ordine pendente!");
+                            Toast.makeText(restaurantActivity.getApplicationContext(), "Stai attendendo un ordine.", Toast.LENGTH_SHORT);
+                            return;
+                        }
+                    }
+
+                    //qui decido se RestaurantActivity può passare a OrderActivity, devo
+                    //aspettare la risposta e procedere in maniera sincrona.
+                }
+            }
+        });
     }
 
     public boolean gpsSetted() {return this.gpsSetted;}

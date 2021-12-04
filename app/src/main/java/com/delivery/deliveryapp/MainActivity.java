@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,18 +51,11 @@ public class MainActivity extends Activity
         bundle = savedInstanceState;
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-    }
 
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-        Log.v(TAG, "Onstart bundle is: " + bundle);
         if (bundle == null) //no data saved locally, must query the db
         {
             bundle = new Bundle();
             loadData();
-            Log.v(TAG, "OnStart: bundle null");
         }
 
         else
@@ -86,6 +80,12 @@ public class MainActivity extends Activity
                 }
             }
         }
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
 
         Button settings = this.findViewById(R.id.settings);
         settings.setOnClickListener(new View.OnClickListener() {
@@ -95,10 +95,21 @@ public class MainActivity extends Activity
                 MainActivity.this.startActivity(myIntent);
             }
         });
+
+        Button history = this.findViewById(R.id.orders);
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (manager.getStatus() == AsyncTask.Status.RUNNING)
+                    manager.cancel(true);
+                Intent myIntent = new Intent(MainActivity.this, HistoryActivity.class);
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause() {//TODO posso lasciare onPause vuoto?
         super.onPause();
         if (manager.gpsSetted()) {
             bundle.putBoolean("reload", false);
@@ -130,6 +141,11 @@ public class MainActivity extends Activity
 
         //gps coords
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (!locationManager.isProviderEnabled(LOCATION_SERVICE))
+        {
+            TextView infoTxt = findViewById(R.id.info);
+            infoTxt.setText("Ottengo la posizione..");
+        }
 
         locationListener = new LocationListener() {
             @Override
@@ -149,12 +165,16 @@ public class MainActivity extends Activity
 
             @Override
             public void onProviderEnabled(String s) {
-
+                Log.v("PROVIDER", "Provider enabled");
+                TextView infoTxt = findViewById(R.id.info);
+                infoTxt.setText("Ottengo la posizione..");
             }
 
             @Override
             public void onProviderDisabled(String s) {
-
+                Log.v("PROVIDER", "Provider disabled");
+                TextView infoTxt = findViewById(R.id.info);
+                infoTxt.setText("Attiva la geolocalizzazione.");
             }
         };
 
@@ -243,8 +263,5 @@ public class MainActivity extends Activity
         });
 
         restaurantLayout.addView(l);
-
-        Space space = new Space(this);
-        restaurantLayout.addView(space);
     }
 }

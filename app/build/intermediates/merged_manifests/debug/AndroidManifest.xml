@@ -42,6 +42,7 @@
         <activity android:name="com.delivery.deliveryapp.OrderActivity" />
         <activity android:name="com.delivery.deliveryapp.MainActivity" />
         <activity android:name="com.delivery.deliveryapp.SettingsActivity" />
+        <activity android:name="com.delivery.deliveryapp.HistoryActivity" />
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"
