@@ -21,7 +21,6 @@ public class DishActivity extends Activity {
     private final static String TAG = "INFO";
     private Dish dish;
     private int initialCount;
-    //private Order order; //ref to general order. Dishes are added here.
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -79,18 +78,6 @@ public class DishActivity extends Activity {
         super.finish();
     }
 
-    private void updateOrder()
-    {
-        TextView counter = findViewById(R.id.counter);
-        String numText = counter.getText().toString();
-        int num = Integer.parseInt(numText);
-        if (num > 0) {
-            //order.setDishQuantity(this.dish, num);
-            //order.addDishes(this.dish, num);
-            //Toast.makeText(this, "Aggiunto agli ordini", Toast.LENGTH_LONG).show();
-        }
-    }
-
     public void onClick(View v)
     {
         Button button = (Button) v;
@@ -113,6 +100,5 @@ public class DishActivity extends Activity {
                 counter.setText(val + "");
             }
         }
-        //updateOrder();
     }
 }

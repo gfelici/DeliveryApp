@@ -52,12 +52,12 @@
         "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\a5ec2b94bdedaa6dbafaaec0cbe365aa\\appcompat-1.2.0\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
     {
-        "merged": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_design_password_eye.xml.flat",
-        "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\fdaf49db44447fea649237adb6f2d42b\\material-1.3.0\\res\\drawable\\design_password_eye.xml"
-    },
-    {
         "merged": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_hint_foreground_material_light.xml.flat",
         "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\a5ec2b94bdedaa6dbafaaec0cbe365aa\\appcompat-1.2.0\\res\\color\\abc_hint_foreground_material_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_design_password_eye.xml.flat",
+        "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\fdaf49db44447fea649237adb6f2d42b\\material-1.3.0\\res\\drawable\\design_password_eye.xml"
     },
     {
         "merged": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\res\\merged\\debug\\color_material_on_surface_emphasis_medium.xml.flat",
@@ -148,12 +148,12 @@
         "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\fdaf49db44447fea649237adb6f2d42b\\material-1.3.0\\res\\interpolator\\mtrl_linear.xml"
     },
     {
-        "merged": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
-        "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\a5ec2b94bdedaa6dbafaaec0cbe365aa\\appcompat-1.2.0\\res\\drawable-xxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png"
-    },
-    {
         "merged": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
         "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\a5ec2b94bdedaa6dbafaaec0cbe365aa\\appcompat-1.2.0\\res\\drawable-mdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
+        "source": "C:\\Users\\gabriele\\.gradle\\caches\\transforms-2\\files-2.1\\a5ec2b94bdedaa6dbafaaec0cbe365aa\\appcompat-1.2.0\\res\\drawable-xxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png"
     },
     {
         "merged": "C:\\Users\\gabriele\\Desktop\\DeliveryApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_tab_indicator_material.xml.flat",

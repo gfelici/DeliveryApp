@@ -33,7 +33,7 @@ public class MenuListener<T> implements OnCompleteListener<T> {
             for (String name : snapshot.getData().keySet()) {
                 //Log.v(TAG, "Dish name: " + name);
                 double price = snapshot.getDouble(name);
-                Dish dish = new Dish(name, "description", (float) price);
+                Dish dish = new Dish(name, (float) price);
                 m.add(dish);
             }
 
