@@ -48,36 +48,18 @@ import java.util.Map;
 
 import com.google.firebase.auth.FirebaseUser;
 
-public class DbManager extends AsyncTask<Void, Void, Void> {
+public class DbManager {
 
     public static FirebaseUser user;
 
     private final String TAG = "DBINFO";
     private FirebaseFirestore db;
 
-    private MainActivity main;
-    private double _lat, _long;
-    private double [] restaurantSquare; //cords range
-    private static int RANGE = 15; //KM
-    private boolean gpsSetted;
-
-    //costruttore usato quando si devono invocare funzioni che non richiedono l'esecuzione del task
-    //TODO refactoring (spostare il task fuori che chiama le funzionalità) + dichiarare le funzionalità statiche
     public DbManager()
     {
         this.db = FirebaseFirestore.getInstance();
     }
 
-    public DbManager(MainActivity main, float _lat, float _long)
-    {
-        this.main = main;
-        gpsSetted = false;
-
-        this._lat = _lat;
-        this._long = _long;
-
-        this.db = FirebaseFirestore.getInstance();
-    }
 
     private Menu buildMenu(final String resName, final int idx, final String menuName) {
 
@@ -126,7 +108,7 @@ public class DbManager extends AsyncTask<Void, Void, Void> {
         return new Restaurant(resName, menus);
     }
 
-    public void getData()
+    public void getData(final MainActivity main, double [] restaurantSquare)
     {
         GeoPoint north = new GeoPoint(restaurantSquare[1], 0.0);
         GeoPoint south = new GeoPoint(restaurantSquare[0], 0.0);
@@ -160,31 +142,6 @@ public class DbManager extends AsyncTask<Void, Void, Void> {
                 }
             }
         });
-    }
-
-    @Override
-    public Void doInBackground(Void... v)
-    {
-        while (_lat == 0 || _long == 0)
-        {   //wait until i have both cords
-            try { Thread.sleep(5); } catch (InterruptedException iex) { }
-        }
-        this.gpsSetted = true;
-
-        restaurantSquare = GpsUtils.computeSquareAroundPos(_lat, _long, RANGE);
-
-        this.getData();
-
-        Log.d(TAG, "Fine");
-        return null;
-    }
-
-    @Override
-    protected void onPostExecute(Void aVoid) {//TODO da rimuovere
-        super.onPostExecute(aVoid);
-        TextView info = main.findViewById(R.id.info);
-        info.setText("Ristoranti intorno a te: ");
-        Log.v(TAG, "End");
     }
 
     public void updateUserData(final Context ctx, String name, String address, String city)
@@ -352,8 +309,4 @@ public class DbManager extends AsyncTask<Void, Void, Void> {
             }
         });
     }
-
-    public boolean gpsSetted() {return this.gpsSetted;}
-    public void setLat(double _lat) {this._lat = _lat;}
-    public void setLong(double _long) {this._long = _long;}
 }

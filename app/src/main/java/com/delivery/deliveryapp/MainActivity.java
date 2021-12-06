@@ -24,6 +24,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.delivery.deliveryapp.Firebase.DbManager;
+import com.delivery.deliveryapp.Firebase.GpsWait;
 import com.delivery.deliveryapp.models.Restaurant;
 import com.delivery.deliveryapp.utils.Utils;
 
@@ -41,7 +42,8 @@ public class MainActivity extends Activity
     final String TAG = "INFO";
     final String CORDS = "CORDS";
 
-    final DbManager manager = new DbManager(this, 0,0); //get db instance
+    final GpsWait gpsWait = new GpsWait(this);
+    //final DbManager manager = new DbManager(); //get db instance
     private Bundle bundle;
 
     @Override
@@ -100,8 +102,8 @@ public class MainActivity extends Activity
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (manager.getStatus() == AsyncTask.Status.RUNNING)
-                    manager.cancel(true);
+                if (gpsWait.getStatus() == AsyncTask.Status.RUNNING)
+                    gpsWait.cancel(true);
                 Intent myIntent = new Intent(MainActivity.this, HistoryActivity.class);
                 MainActivity.this.startActivity(myIntent);
             }
@@ -111,26 +113,26 @@ public class MainActivity extends Activity
     @Override
     protected void onPause() {//TODO posso lasciare onPause vuoto?
         super.onPause();
-        if (manager.gpsSetted()) {
+        if (gpsWait.gpsSetted()) {
             bundle.putBoolean("reload", false);
             bundle.putSerializable("Restaurants", restaurants);
         }
         else {
             bundle.putBoolean("reload", true);
-            manager.cancel(true);
+            gpsWait.cancel(true);
         }
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (manager.gpsSetted()) {
+        if (gpsWait.gpsSetted()) {
             outState.putBoolean("reload", false);
             outState.putSerializable("Restaurants", restaurants);
         }
         else {
             outState.putBoolean("reload", true);
-            manager.cancel(true);
+            gpsWait.cancel(true);
         }
     }
 
@@ -154,8 +156,8 @@ public class MainActivity extends Activity
                 _lat = location.getLatitude();
                 _long = location.getLongitude();
 
-                manager.setLat(_lat);
-                manager.setLong(_long);
+                gpsWait.setLat(_lat);
+                gpsWait.setLong(_long);
             }
 
             @Override
@@ -196,7 +198,7 @@ public class MainActivity extends Activity
             {}
         }
 
-        manager.execute();
+        gpsWait.execute();
     }
 
     @Override
