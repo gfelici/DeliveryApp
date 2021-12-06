@@ -8,9 +8,11 @@ import android.text.Layout;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,13 +69,16 @@ public class OrderActivity extends Activity {
             @Override
             public void onClick(View view) {
                 EditText txtName, txtAddress, txtCity;
+                Spinner timeSpinner;
+
                 txtName = findViewById(R.id.editTextName);
                 txtAddress = findViewById(R.id.editTextAddress);
                 txtCity = findViewById(R.id.editTextCity);
-
+                timeSpinner = findViewById(R.id.time_spinner);
                 String name = txtName.getText().toString();
                 String address = txtAddress.getText().toString();
                 String city = txtCity.getText().toString();
+                String deliveryTime = timeSpinner.getSelectedItem().toString();
 
                 if (name.length() == 0 || address.length() == 0 || city.length() == 0)
                 {
@@ -82,10 +87,21 @@ public class OrderActivity extends Activity {
                 }
 
                 dbManager = new DbManager();
-                dbManager.updateOrder(getApplicationContext(), name, address, city, order);
+                dbManager.updateOrder(getApplicationContext(), name, address, city, order, deliveryTime);
                 finish();
             }
         });
+
+        //Copiato dalla documentazione di Spineer e riadattato
+        //https://developer.android.com/guide/topics/ui/controls/spinner
+        Spinner spinner = (Spinner) findViewById(R.id.time_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.time_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
     }
 
     @Override

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.delivery.deliveryapp.Firebase.DbManager;
 import com.delivery.deliveryapp.models.Dish;
 import com.delivery.deliveryapp.models.Order;
 import com.delivery.deliveryapp.models.Restaurant;
@@ -87,7 +88,9 @@ public class RestaurantActivity extends AppCompatActivity {
     {
         Intent orderIntent = new Intent(RestaurantActivity.this, OrderActivity.class);
         orderIntent.putExtra("order", this.order);
-        startActivity(orderIntent);
+        //startActivity(orderIntent);
+        DbManager dbManager = new DbManager();
+        dbManager.checkOrder(this, orderIntent);
     }
 
     @Override

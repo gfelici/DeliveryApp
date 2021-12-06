@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.delivery.deliveryapp.Firebase.DbManager;
 import com.delivery.deliveryapp.utils.Utils;
@@ -29,7 +28,7 @@ public class HistoryActivity extends Activity {
         super.onStart();
         history = (LinearLayout) findViewById(R.id.historylayout);
         DbManager dbManager = new DbManager();
-        dbManager.getOrder(this);
+        dbManager.getOrders(this);
     }
 
     /*
@@ -58,7 +57,7 @@ public class HistoryActivity extends Activity {
 
         //consegna alle
         TextView deliveryText = new TextView(this);
-        deliveryText.setText("time here");
+        deliveryText.setText(deliveryTime);
         deliveryText.setTextColor(Color.BLACK);
         deliveryText.setTextSize(16);
         deliveryText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);

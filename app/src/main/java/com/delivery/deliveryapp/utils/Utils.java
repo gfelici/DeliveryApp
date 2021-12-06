@@ -7,6 +7,9 @@ import android.widget.ImageView;
 
 import android.util.Base64;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import static android.graphics.BitmapFactory.decodeByteArray;
 
 public class Utils {
@@ -28,4 +31,16 @@ public class Utils {
         byte [] bytes = Base64.decode(coded, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
+
+    //https://www.baeldung.com/java-date-without-time
+    public static Date getDateTime(int hour, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        return calendar.getTime();
+    }
 }
+
