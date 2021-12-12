@@ -3,9 +3,6 @@ package com.delivery.deliveryapp.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-//visita https://stackoverflow.com/questions/53094470/class-that-extends-arraylist-doesnt-serialize-properly
-//essendosi verificati problemi con la gestione degli intent per la serializzazione
-
 public class Restaurant implements Serializable{
 
     private String name;
