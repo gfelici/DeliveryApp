@@ -1,7 +1,6 @@
 package com.delivery.deliveryapp;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.delivery.deliveryapp.models.Dish;
-import com.delivery.deliveryapp.models.ObjectQuantity;
-import com.delivery.deliveryapp.models.Order;
 
 public class DishActivity extends Activity {
 

@@ -3,9 +3,6 @@ package com.delivery.deliveryapp.Firebase;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.media.audiofx.Equalizer;
-import android.os.AsyncTask;
-import android.os.health.TimerStat;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,13 +14,11 @@ import com.delivery.deliveryapp.HistoryActivity;
 import com.delivery.deliveryapp.MainActivity;
 import com.delivery.deliveryapp.R;
 import com.delivery.deliveryapp.RestaurantActivity;
-import com.delivery.deliveryapp.SettingsActivity;
 import com.delivery.deliveryapp.models.Dish;
 import com.delivery.deliveryapp.models.Menu;
-import com.delivery.deliveryapp.models.ObjectQuantity;
+import com.delivery.deliveryapp.models.DishQuantity;
 import com.delivery.deliveryapp.models.Order;
 import com.delivery.deliveryapp.models.Restaurant;
-import com.delivery.deliveryapp.utils.GpsUtils;
 import com.delivery.deliveryapp.utils.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,10 +30,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -196,13 +189,13 @@ public class DbManager {
 
     private void updateDishes(final String docId, final Order order)
     {
-        for (ObjectQuantity<Dish> qd: order.getDishes()) {
+        for (DishQuantity qd: order.getDishes()) {
 
             Map<String, Object> dishData = new HashMap<>();
             dishData.put("count", qd.getQuantity());
-            dishData.put("price", qd.getObject().getPrice());
+            dishData.put("price", qd.getDish().getPrice());
 
-            db.document("orders/" + docId + "/dishes/" + qd.getObject().getName()).set(dishData);
+            db.document("orders/" + docId + "/dishes/" + qd.getDish().getName()).set(dishData);
         }
     }
 
@@ -236,6 +229,7 @@ public class DbManager {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         updateDishes(documentReference.getId(), order);
+                        Toast.makeText(ctx, "Ordine inviato", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

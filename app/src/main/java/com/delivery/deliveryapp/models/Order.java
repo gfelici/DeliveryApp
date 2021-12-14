@@ -8,34 +8,34 @@ import java.util.ArrayList;
 public class Order implements Serializable {
 
     private Restaurant restaurant; //ref to restaurant where the order was taken
-    private ArrayList<ObjectQuantity<Dish>> dishes;
+    private ArrayList<DishQuantity> dishes;
     private static final String TAG = "INFO";
 
     public Order(Restaurant restaurant)
     {
         this.restaurant = restaurant;
-        this.dishes = new ArrayList<ObjectQuantity<Dish>>();
+        this.dishes = new ArrayList<DishQuantity>();
     }
 
-    public ArrayList<ObjectQuantity<Dish>> getDishes()
+    public ArrayList<DishQuantity> getDishes()
     {
         return this.dishes;
     }
-    public void setDishes(ArrayList<ObjectQuantity<Dish>> dishes)
+    public void setDishes(ArrayList<DishQuantity> dishes)
     {
         this.dishes = dishes;
     }
 
     public void addDishes(Dish dish, int num)
     {
-        ObjectQuantity<Dish> dishesToAdd = new ObjectQuantity<Dish>(dish, num);
+        DishQuantity dishesToAdd = new DishQuantity(dish, num);
         this.dishes.add(dishesToAdd);
     }
 
     public void setDishQuantity(Dish dish, int quantity)
     {
-        for (ObjectQuantity<Dish> dq : dishes)
-            if (dq.getObject().getName().equals(dish.getName()))
+        for (DishQuantity dq : dishes)
+            if (dq.getDish().getName().equals(dish.getName()))
             {
                 if (quantity <= 0)
                     dishes.remove(dq);
@@ -45,15 +45,15 @@ public class Order implements Serializable {
             }
         //dish is not in the order, must be added
         if (quantity > 0)
-            dishes.add(new ObjectQuantity<Dish>(dish, quantity));
+            dishes.add(new DishQuantity(dish, quantity));
     }
 
     public int getDishQuantity(Dish dish)
     {
-        for (ObjectQuantity<Dish> dq : dishes) {
-            Log.v(TAG, "Dish: " + dq.getObject().getName());
+        for (DishQuantity dq : dishes) {
+            Log.v(TAG, "Dish: " + dq.getDish().getName());
             Log.v(TAG, "Dish to found: " + dish.getName());
-            if (dq.getObject().getName().equals(dish.getName()))//TODO BUG QUI (non torna l'equals)
+            if (dq.getDish().getName().equals(dish.getName()))
                 return dq.getQuantity();
         }
         return 0;
@@ -62,8 +62,8 @@ public class Order implements Serializable {
     public float getTotalPrice()
     {
         float totalPrice = 0.0f;
-        for (ObjectQuantity<Dish> dq : dishes) {
-            float dishesPrice = dq.getObject().getPrice() * dq.getQuantity();
+        for (DishQuantity dq : dishes) {
+            float dishesPrice = dq.getDish().getPrice() * dq.getQuantity();
             totalPrice += dishesPrice;
         }
 
@@ -73,8 +73,8 @@ public class Order implements Serializable {
     public String toString()
     {
         String orderStr = "";
-        for (ObjectQuantity<Dish> dq : dishes) {
-            Dish dish = (Dish) dq.getObject();
+        for (DishQuantity dq : dishes) {
+            Dish dish = dq.getDish();
             orderStr = orderStr + dish.getName() + ":"+ dq.getQuantity()+" ";
         }
         return orderStr;

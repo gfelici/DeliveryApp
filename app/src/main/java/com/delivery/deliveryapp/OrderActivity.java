@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.delivery.deliveryapp.Firebase.DbManager;
-import com.delivery.deliveryapp.models.Dish;
-import com.delivery.deliveryapp.models.ObjectQuantity;
+import com.delivery.deliveryapp.models.DishQuantity;
 import com.delivery.deliveryapp.models.Order;
 import com.delivery.deliveryapp.utils.Utils;
 
@@ -51,7 +49,7 @@ public class OrderActivity extends Activity {
             layout.addView(noOrderText);
         }
         else {
-            for (ObjectQuantity<Dish> dq : order.getDishes())
+            for (DishQuantity dq : order.getDishes())
                 addDishCounter(dq);
         }
         TextView total = findViewById(R.id.totalPrice);
@@ -92,7 +90,7 @@ public class OrderActivity extends Activity {
             }
         });
 
-        //Copiato dalla documentazione di Spineer e riadattato
+        //Copiato dalla documentazione di Spinner e riadattato
         //https://developer.android.com/guide/topics/ui/controls/spinner
         Spinner spinner = (Spinner) findViewById(R.id.time_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -109,7 +107,7 @@ public class OrderActivity extends Activity {
         super.onResume();
     }
 
-    public void addDishCounter(final ObjectQuantity<Dish> dq)
+    public void addDishCounter(final DishQuantity dq)
     {
         LinearLayout l = new LinearLayout(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -125,7 +123,7 @@ public class OrderActivity extends Activity {
         params.setMarginStart(Utils.dpToPx(10,this));
         textName.setLayoutParams(params);
         textName.setGravity(Gravity.LEFT);
-        textName.setText(dq.getObject().getName());
+        textName.setText(dq.getDish().getName());
         textName.setTextSize(20);
         textName.setTextColor(Color.BLACK);
         l.addView(textName);
@@ -153,7 +151,7 @@ public class OrderActivity extends Activity {
         params.setMarginStart(Utils.dpToPx(10,this));
         textPrice.setLayoutParams(params);
         //textPrice.setGravity(Gravity.RIGHT);
-        Float price = dq.getObject().getPrice()* dq.getQuantity();
+        Float price = dq.getDish().getPrice()* dq.getQuantity();
         textPrice.setText("Prezzo: " +price+" €");
         textPrice.setTextSize(15);
         textPrice.setTextColor(Color.BLACK);

@@ -8,7 +8,6 @@ class Menu(val name: String) : Serializable {
     var dishes: ArrayList<Dish>
         private set
 
-
     init {
         this.dishes = ArrayList()
     }
