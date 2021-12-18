@@ -51,7 +51,7 @@ public class HistoryActivity extends Activity {
         resText.setTextSize(25);
 
         TextView totalText = new TextView(this);
-        totalText.setText("Totale: " + total);
+        totalText.setText("Totale: " + total + " €");
         totalText.setTextColor(Color.BLACK);
         totalText.setTextSize(20);
 
