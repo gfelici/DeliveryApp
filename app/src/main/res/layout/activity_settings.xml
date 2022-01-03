@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLightYellow">
+    android:background="@color/colorBlueWhite">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Impostazioni"
+        android:text="@string/settings"
         android:textSize="30dp"
         android:textColor="@color/colorBlack"/>
 
@@ -21,7 +21,7 @@
             android:id="@+id/textName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nome"
+            android:text="@string/name"
             android:textSize="25dp"
             android:textColor="@color/colorBlack"/>
 
@@ -42,7 +42,7 @@
             android:id="@+id/textAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Indirizzo"
+            android:text="@string/address"
             android:textSize="25dp"
             android:textColor="@color/colorBlack"/>
 
@@ -63,7 +63,7 @@
             android:id="@+id/textCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Città"
+            android:text="@string/city"
             android:textColor="@color/colorBlack"
             android:textSize="25dp" />
 
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
-            android:text="Salva"
+            android:text="@string/save"
             android:layout_gravity="center_horizontal"
             android:onClick="onClick"/>
 

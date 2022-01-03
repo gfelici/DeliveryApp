@@ -38,6 +38,9 @@ public class DishActivity extends Activity {
         TextView dishTextView = findViewById(R.id.dishTextView);
         dishTextView.setText(dish.getName());
 
+        TextView priceTextView = findViewById(R.id.priceTextView);
+        priceTextView.setText("Prezzo: " + dish.getPrice() + " €");
+
         TextView counter = findViewById(R.id.counter);
         Log.v(TAG, "Quantity: " + initialCount);
         counter.setText(""+this.initialCount);
@@ -71,7 +74,7 @@ public class DishActivity extends Activity {
         intent.putExtra("count", count);
         setResult(Activity.RESULT_OK, intent);
         if (count>0 &&  !(initialCount == count))
-            Toast.makeText(this, "Aggiunto agli ordini", Toast.LENGTH_LONG).show();//TODO aggiungere a res/strings
+            Toast.makeText(this, R.string.added_to_orders, Toast.LENGTH_LONG).show();
         super.finish();
     }
 
@@ -96,6 +99,10 @@ public class DishActivity extends Activity {
                 val--;
                 counter.setText(val + "");
             }
+        }
+        else if (text.equals(this.getString(R.string.confirm)))
+        {
+            finish();
         }
     }
 }

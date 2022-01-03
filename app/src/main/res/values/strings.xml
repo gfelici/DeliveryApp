@@ -1,15 +1,17 @@
 <resources>
     <string name="app_name">DeliveryApp</string>
+
+    <!--Login-->
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Accedi</string>
     <string name="action_register">Registrati</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="welcome">"Benvenuto"</string>
+    <string name="invalid_username">Username non valido</string>
+    <string name="invalid_password">La password deve avere più di 5 caratteri</string>
+    <string name="login_failed">"Login fallito"</string>
 
     <!--Time spinner -->
     <string-array name="time_array">
@@ -22,4 +24,22 @@
         <item>21:30</item>
         <item>22:00</item>
     </string-array>
+
+    <!--Views-->
+    <string name="orders">ordini</string>
+    <string name="settings">Impostazioni</string>
+    <string name="res_around_you">Ristoranti intorno a te:</string>
+    <string name="history_orders">Storico ordini</string>
+    <string name="name">Nome</string>
+    <string name="address">Indirizzo</string>
+    <string name="city">Città</string>
+    <string name="save">salva</string>
+    <string name="confirm">conferma</string>
+    <string name="your_order">Il tuo ordine</string>
+    <string name="no_order_yet">Ancora nessun ordine</string>
+    <string name="delivery_time">Orario di consegna</string>
+    <string name="getting_position">Ottengo la posizione</string>
+    <string name="active_geolocal">Attiva la geolocalizzazione.</string>
+    <string name="empty_fields">Campi vuoti</string>
+    <string name="added_to_orders">Aggiunto agli ordini</string>
 </resources>

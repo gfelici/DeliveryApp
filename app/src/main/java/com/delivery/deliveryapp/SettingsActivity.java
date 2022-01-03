@@ -44,7 +44,7 @@ public class SettingsActivity extends Activity {
 
                 if (name.length() == 0 || address.length() == 0 || city.length() == 0)
                 {
-                    Toast.makeText(getApplicationContext(), "Campi vuoti", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.empty_fields, Toast.LENGTH_SHORT).show();
                     return;
                 }
 

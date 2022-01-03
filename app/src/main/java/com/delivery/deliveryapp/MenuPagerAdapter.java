@@ -38,7 +38,6 @@ public class MenuPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position)
     {
         return MenuFragment.newInstance(this.restaurant.getMenus().get(position), order);
-        //return new MenuFragment(this.restaurant.getMenus().get(position), order);
     }
 
     @Override
@@ -52,7 +51,6 @@ public class MenuPagerAdapter extends FragmentPagerAdapter {
         MenuFragment fragment = (MenuFragment) super.instantiateItem(container, position);
         fragments[position] = fragment;
         return fragment;
-        //return super.instantiateItem(container, position);
     }
 
 }

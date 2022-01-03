@@ -74,7 +74,6 @@ public class RestaurantActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putSerializable("restaurant", bundle.getSerializable("restaurant"));
         outState.putSerializable("order", bundle.getSerializable("order"));
-        //outState.putSerializable("adapter", bundle.getSerializable("adapter"));
     }
 
     private void addTab(String tabName, ArrayList<String> items)
@@ -88,7 +87,6 @@ public class RestaurantActivity extends AppCompatActivity {
     {
         Intent orderIntent = new Intent(RestaurantActivity.this, OrderActivity.class);
         orderIntent.putExtra("order", this.order);
-        //startActivity(orderIntent);
         DbManager dbManager = new DbManager();
         dbManager.checkOrder(this, orderIntent);
     }
@@ -105,8 +103,6 @@ public class RestaurantActivity extends AppCompatActivity {
             this.order.setDishQuantity(dish, count);
             bundle.putSerializable("order", this.order);
             //Log.v(TAG, "Dish quantity: "+this.order.getDishQuantity(dish));
-            //Log.v(ORDER, order.toString());
-
         }
     }
 }

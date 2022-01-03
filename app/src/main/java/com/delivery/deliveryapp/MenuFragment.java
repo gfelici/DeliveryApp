@@ -67,7 +67,7 @@ public class MenuFragment extends Fragment {
         LinearLayout menuLayout = (LinearLayout) rootView.findViewById(R.id.menu_layout);
         for (final Dish d : this.menu.getDishes())
         {
-            LinearLayout l = new LinearLayout(this.getContext()); //TODO cambiare layout per nomi lunghi
+            LinearLayout l = new LinearLayout(this.getContext());
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);

@@ -58,7 +58,7 @@ public class LoginActivity extends Activity {
                                     FirebaseUser user = auth.getCurrentUser();
                                     Toast.makeText(getApplicationContext(), "Utente registrato", Toast.LENGTH_SHORT);
                                 } else {
-                                    Log.v(TAG, "Utente NON registrato");
+                                    Log.v(TAG, "Utente non registrato");
                                     Toast.makeText(getApplicationContext(), "Errore: utente non registrato", Toast.LENGTH_SHORT);
                                     Log.e(TAG, task.getException().getMessage());
                                 }
@@ -82,7 +82,6 @@ public class LoginActivity extends Activity {
 
                             Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
                             LoginActivity.this.startActivity(myIntent);
-                            //myIntent.setFlags(Inte)
                             finish();
                         } else {
                             Log.e(TAG, "Username o password errati " + task.getException().getMessage());

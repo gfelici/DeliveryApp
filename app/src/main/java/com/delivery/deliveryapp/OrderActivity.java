@@ -43,7 +43,7 @@ public class OrderActivity extends Activity {
 
             noOrderText.setLayoutParams(params);
             noOrderText.setGravity(Gravity.CENTER);
-            noOrderText.setText("Ancora nessun ordine");
+            noOrderText.setText(R.string.no_order_yet);
             noOrderText.setTextSize(30);
             LinearLayout layout = findViewById(R.id.orderLayout);
             layout.addView(noOrderText);
@@ -80,7 +80,7 @@ public class OrderActivity extends Activity {
 
                 if (name.length() == 0 || address.length() == 0 || city.length() == 0)
                 {
-                    Toast.makeText(getApplicationContext(), "Campi vuoti", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.empty_fields, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -138,7 +138,6 @@ public class OrderActivity extends Activity {
                 Utils.dpToPx(50, this));
         params.setMarginStart(Utils.dpToPx(10,this));
         textQuant.setLayoutParams(params);
-        //textQuant.setGravity(Gravity.RIGHT);
         textQuant.setText("Quantità: "+dq.getQuantity());
         textQuant.setTextSize(15);
         textQuant.setTextColor(Color.BLACK);
@@ -150,7 +149,6 @@ public class OrderActivity extends Activity {
                 Utils.dpToPx(50, this));
         params.setMarginStart(Utils.dpToPx(10,this));
         textPrice.setLayoutParams(params);
-        //textPrice.setGravity(Gravity.RIGHT);
         Float price = dq.getDish().getPrice()* dq.getQuantity();
         textPrice.setText("Prezzo: " +price+" €");
         textPrice.setTextSize(15);

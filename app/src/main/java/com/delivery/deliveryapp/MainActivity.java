@@ -111,7 +111,7 @@ public class MainActivity extends Activity
     }
 
     @Override
-    protected void onPause() {//TODO posso lasciare onPause vuoto?
+    protected void onPause() {
         super.onPause();
         if (gpsWait.gpsSetted()) {
             bundle.putBoolean("reload", false);
@@ -146,7 +146,7 @@ public class MainActivity extends Activity
         if (!locationManager.isProviderEnabled(LOCATION_SERVICE))
         {
             TextView infoTxt = findViewById(R.id.info);
-            infoTxt.setText("Ottengo la posizione..");
+            infoTxt.setText(R.string.getting_position);
         }
 
         locationListener = new LocationListener() {
@@ -169,22 +169,20 @@ public class MainActivity extends Activity
             public void onProviderEnabled(String s) {
                 Log.v("PROVIDER", "Provider enabled");
                 TextView infoTxt = findViewById(R.id.info);
-                infoTxt.setText("Ottengo la posizione..");
+                infoTxt.setText(R.string.getting_position);
             }
 
             @Override
             public void onProviderDisabled(String s) {
                 Log.v("PROVIDER", "Provider disabled");
                 TextView infoTxt = findViewById(R.id.info);
-                infoTxt.setText("Attiva la geolocalizzazione.");
+                infoTxt.setText(R.string.active_geolocal);
             }
         };
 
         if (checkCallingOrSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && checkCallingOrSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            //TODO avviso l'utente del perchè ho bisogno del permesso
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                //lo chiediamo
                 requestPermissions(perms, GPS_REQ_CODE);
             }
         }
@@ -210,7 +208,6 @@ public class MainActivity extends Activity
                 for (int j=0; j<perms.length; j++)
                     if (permissions[i].equals(perms[j]))
                         if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                            //flag permesso on, lastknownlocation non deve essere usato
                             Log.d(TAG, "Permission " + permissions[i] + " granted");
                         }
                         else

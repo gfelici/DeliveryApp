@@ -101,7 +101,7 @@ public class DbManager {
         return new Restaurant(resName, menus);
     }
 
-    public void getData(final MainActivity main, double [] restaurantSquare)
+    public void getData(final MainActivity main, final double [] restaurantSquare)
     {
         GeoPoint north = new GeoPoint(restaurantSquare[1], 0.0);
         GeoPoint south = new GeoPoint(restaurantSquare[0], 0.0);
@@ -117,7 +117,7 @@ public class DbManager {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     QuerySnapshot documentSnapshots = task.getResult();
-                    //TODO filtrare la latitudine
+
                     if (documentSnapshots.isEmpty())
                     {
                         Log.d(TAG, "onSuccess: LIST EMPTY");
@@ -129,8 +129,15 @@ public class DbManager {
                         DocumentSnapshot resRef = documentSnapshots.getDocuments().get(r);
                         String name = resRef.getId();
 
-                        Restaurant restaurant = buildRestaurant(name);
-                        main.addRestaurant(restaurant);
+                        //filtro la longitudine
+                        double resLong = resRef.getGeoPoint("position").getLongitude();
+                        double east = restaurantSquare[3];
+                        double weast = restaurantSquare[2];
+
+                        if (resLong < east && resLong > weast) {
+                            Restaurant restaurant = buildRestaurant(name);
+                            main.addRestaurant(restaurant);
+                        }
                     }
                 }
             }

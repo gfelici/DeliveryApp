@@ -11,12 +11,12 @@
         android:text="Il tuo ordine"
         android:textSize="40sp"
         android:textColor="@color/colorBlack"
-        android:background="@color/colorLightOrange" />
+        android:background="@color/colorBlue" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorLightYellow"
+        android:background="@color/colorBlueWhite"
         android:layout_weight="20">
 
         <LinearLayout
@@ -103,7 +103,6 @@
                     android:textSize="20dp" />
             </LinearLayout>
 
-            <!--TODO aggiungere selezione orario qui -->
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -130,7 +129,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorLightOrange">
+        android:backgroundTint="@color/colorBlue">
 
     <TextView
         android:id="@+id/totalPrice"
@@ -140,13 +139,13 @@
         android:text="Totale: 0.0 €"
         android:textSize="30dp"
         android:textColor="@color/colorBlack"
-        android:background="@color/colorLightOrange"/>
+        android:background="@color/colorBlue"/>
     <Button
         android:id="@+id/buttonConfirm"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="Conferma"
-        android:background="@color/colorLightOrange"
+        android:background="@color/colorBlue"
         android:textColor="@color/colorBlack"/>
 
     </LinearLayout>

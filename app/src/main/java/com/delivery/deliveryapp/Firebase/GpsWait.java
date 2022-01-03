@@ -43,8 +43,8 @@ public class GpsWait extends AsyncTask<Void, Void, Void>{
     protected void onPostExecute(Void aVoid) {//TODO update nei risultati
         super.onPostExecute(aVoid);
         TextView info = main.findViewById(R.id.info);
-        info.setText("Ristoranti intorno a te: ");
-        Log.v(TAG, "End");
+        info.setText(R.string.res_around_you);
+        Log.v(TAG, "Coordinates ok");
     }
 
     public boolean gpsSetted() {return this.gpsSetted;}
