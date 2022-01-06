@@ -53,7 +53,6 @@ public class DbManager {
         this.db = FirebaseFirestore.getInstance();
     }
 
-
     private Menu buildMenu(final String resName, final int idx, final String menuName) {
 
         final Menu menu = new Menu(menuName);
@@ -120,7 +119,6 @@ public class DbManager {
 
                     if (documentSnapshots.isEmpty())
                     {
-                        Log.d(TAG, "onSuccess: LIST EMPTY");
                         return;
                     }
                     int dim = documentSnapshots.size();
