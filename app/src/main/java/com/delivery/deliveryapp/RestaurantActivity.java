@@ -76,13 +76,6 @@ public class RestaurantActivity extends AppCompatActivity {
         outState.putSerializable("order", bundle.getSerializable("order"));
     }
 
-    private void addTab(String tabName, ArrayList<String> items)
-    {
-        TabLayout.Tab tab = tabLayout.newTab();
-        tab.setText(tabName);
-        tabLayout.addTab(tab);
-    }
-
     public void onClick(View v)
     {
         Intent orderIntent = new Intent(RestaurantActivity.this, OrderActivity.class);

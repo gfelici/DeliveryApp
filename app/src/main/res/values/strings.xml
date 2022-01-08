@@ -42,4 +42,5 @@
     <string name="active_geolocal">Attiva la geolocalizzazione.</string>
     <string name="empty_fields">Campi vuoti</string>
     <string name="added_to_orders">Aggiunto agli ordini</string>
+    <string name="gps_perm_required">Sono necessari i permessi sulla posizione.</string>
 </resources>

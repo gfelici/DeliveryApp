@@ -40,8 +40,7 @@ public class GpsWait extends AsyncTask<Void, Void, Void>{
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {//TODO update nei risultati
-        super.onPostExecute(aVoid);
+    protected void onPostExecute(Void aVoid) {
         TextView info = main.findViewById(R.id.info);
         info.setText(R.string.res_around_you);
         Log.v(TAG, "Coordinates ok");

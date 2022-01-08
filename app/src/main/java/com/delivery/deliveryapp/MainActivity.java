@@ -43,7 +43,6 @@ public class MainActivity extends Activity
     final String CORDS = "CORDS";
 
     final GpsWait gpsWait = new GpsWait(this);
-    //final DbManager manager = new DbManager(); //get db instance
     private Bundle bundle;
 
     @Override
@@ -142,7 +141,7 @@ public class MainActivity extends Activity
         _lat = _long = 0; //init location, 0 means not already got cords
 
         //gps coords
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(LOCATION_SERVICE))
         {
             TextView infoTxt = findViewById(R.id.info);
@@ -187,13 +186,7 @@ public class MainActivity extends Activity
             }
         }
         else {
-            locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
-            try {
-                _lat = locationManager.getLastKnownLocation(LOCATION_SERVICE).getLatitude();
-                _long = locationManager.getLastKnownLocation(LOCATION_SERVICE).getLongitude();
-            }
-            catch (NullPointerException ex)
-            {}
+        locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
         }
 
         gpsWait.execute();
@@ -209,9 +202,17 @@ public class MainActivity extends Activity
                     if (permissions[i].equals(perms[j]))
                         if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                             Log.d(TAG, "Permission " + permissions[i] + " granted");
+                            try {
+                                locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
+                            }
+                            catch (SecurityException se)
+                            {}
                         }
-                        else
-                            Log.d(TAG,  "Permission " + permissions[i] + " not granted");
+                        else {
+                            Log.d(TAG, "Permission " + permissions[i] + " not granted");
+                            TextView infoTxt = findViewById(R.id.info);
+                            infoTxt.setText(R.string.gps_perm_required);
+                        }
         }
     }
 
