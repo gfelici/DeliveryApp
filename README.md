@@ -5,14 +5,20 @@ La gestione dei dati (menu, ristoranti, ordini) e degli utenti è gestita median
 Ogni ristorante è geolocalizzato, ed è possibile fare richieste ai ristoranti nei paraggi a seconda della posizione dell'utente, 
 facendo uso di un LocationManager.
 
-![Alt text](MainActivity.jpg?raw=true "MainActivity")
+## MainActivity
+<img src="MainActivity.jpg" width="400">
+
 Dopo il login l'appicazione ottiene la posizione dell'utente e fornisce i ristoranti disponibili a consegnare nelle vicinanze.
 E' possibile selezionarne uno per richiedere una consegna.
 
-![Alt text](RestaurantActivity.jpg?raw=true "RestaurantActivity")
+## RestaurantActivity
+<img src="RestaurantActivity.jpg" width="400">
+
 E' possibile navigare nel menù e richiedere il numero di piatti per ogni voce.
 Una volta compilata la propria richiesta si può confermare passando per "Il tuo ordine".
 
-![Alt text](OrderActivity.jpg?raw=true "OrderActivity")
+## OrderActivity
+<img src="OrderActivity.jpg" width="400">
+
 Viene visualizzato un riepilogo dell'ordine. Si forniscono alcuni dati anagrafici e l'indirizzo e l'orario di consegna.
 Una volta confermato i dati vengono salvati sul cloud Firestore.
