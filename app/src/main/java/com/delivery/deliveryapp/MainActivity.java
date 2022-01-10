@@ -186,7 +186,7 @@ public class MainActivity extends Activity
             }
         }
         else {
-        locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
+            locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
         }
 
         gpsWait.execute();
