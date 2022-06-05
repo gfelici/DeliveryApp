@@ -1,4 +1,4 @@
-# Progetto di esame per il corso di programmazione mobile.
+# Progetto di esame per il corso di programmazione mobile
 L'applicazione permette ai vari utenti registrati di richiedere consegne a domicilio nei vari ristoranti della zona.
 Ogni ristorante mette a dispozione un proprio menù e si può richiedere la consegna a domicilio di vari piatti a scelta.
 La gestione dei dati (menu, ristoranti, ordini) e degli utenti è gestita mediante cloud Firestore.
@@ -8,7 +8,7 @@ facendo uso di un LocationManager.
 ## MainActivity
 <img src="MainActivity.jpg" width="400">
 
-Dopo il login l'appicazione ottiene la posizione dell'utente e fornisce i ristoranti disponibili a consegnare nelle vicinanze.
+Dopo il login l'applicazione ottiene la posizione dell'utente e fornisce i ristoranti disponibili a consegnare nelle vicinanze.
 E' possibile selezionarne uno per richiedere una consegna.
 
 ## RestaurantActivity
